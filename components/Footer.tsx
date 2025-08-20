@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         {/* Address */}
-        <div>
+        {/* <div>
           <h3 className="font-bold text-white mb-2">Address</h3>
           <p className="text-gray-300 text-sm">
             <span className="block font-medium text-white mb-1">
@@ -129,7 +129,7 @@ export default function Footer() {
             </span>{" "}
             1423678
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom Section */}
