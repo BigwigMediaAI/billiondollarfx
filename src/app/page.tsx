@@ -15,6 +15,7 @@ import PaymentMethods from "../../components/PaymentMethods";
 import InsightsSection from "../../components/Inside_Contact";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+// import Maintenance from "../../components/Maintenance";
 
 export default function Home() {
   const router = useRouter();
@@ -32,9 +33,7 @@ export default function Home() {
       <TradeSection />
       <section className="py-16">
         <div className="relative w-11/12 md:w-4/5 mx-auto">
-          {/* Box with gradient and text */}
           <div className="bg-gradient-to-b from-[#0A0F1C] to-[#0B3554] text-white p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between relative z-10">
-            {/* Text Content */}
             <div className="max-w-xl">
               <h2 className="text-2xl md:text-3xl font-bold mb-3">
                 <span className="text-[var(--primary)]">Win</span> As You Trade
@@ -43,15 +42,11 @@ export default function Home() {
                 Every trade gets you closer to{" "}
                 <span className="font-bold">guaranteed</span> rewards.
               </p>
-              {/* <p className="mb-3">The more you trade, the better the prize.</p>
-              <p className="italic text-sm text-gray-300 mb-4">
-                Promotion Dates: 1st January 2025 to 31st May 2025
-              </p> */}
+
               <Button text="Create Account" onClick={handleClick} />
             </div>
           </div>
 
-          {/* Image going below the box */}
           <div className="absolute -bottom-10 right-0 md:right-[-40px] z-10 hidden md:block">
             <Image
               src={mobile}
@@ -64,7 +59,6 @@ export default function Home() {
 
       <section className="py-12">
         <div className="w-11/12 md:w-4/5 mx-auto grid md:grid-cols-3 rounded-2xl overflow-hidden">
-          {/* Left 2/3 Content Section */}
           <div className="md:col-span-2 bg-[#34404A] text-white p-8">
             <h3 className="text-2xl md:text-3xl font-bold mb-2 uppercase">
               About{" "}
@@ -117,7 +111,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Right 1/3 Image Section with different bg */}
           <div className="bg-[#19232D] flex items-center justify-center p-6">
             <Image
               src={logo}
@@ -144,6 +137,7 @@ export default function Home() {
         </div>
       </section>
       <Footer />
+      {/* <Maintenance /> */}
     </div>
   );
 }
