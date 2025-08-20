@@ -186,6 +186,354 @@ const glossaryData: GlossaryItem[] = [
     definition:
       "The individual or business that serves as a broker allows a client to enter a market and trades on their behalf.",
   },
+  {
+    term: "Bull",
+    definition:
+      "A trader or investor who expects prices to rise and positions himself accordingly.",
+  },
+  {
+    term: "Bull Market",
+    definition: "A bull market is characterized by persistently rising prices.",
+  },
+  {
+    term: "Bullish Rectangle",
+    definition:
+      "A continuation chart pattern that appears during an upswing, indicating a high likelihood that the upward rise will continue.",
+  },
+  {
+    term: "Candlestick Chart",
+    definition:
+      "One of the common charts of technical analysis showing price changes during a certain period. Each of the candlesticks illustrates opening, closing, high, and low prices, or symbolically shows the mood on the market.",
+  },
+  {
+    term: "Contract for difference (CFDs)",
+    definition:
+      "They are derivative products through which traders speculate on the movements of prices without necessarily having the underlying asset. The opening price of a contract and its closing price determines the profit or loss.",
+  },
+  {
+    term: "Channel",
+    definition:
+      "A channel is a relatively constant range of prices that an asset value moves in, causing the fluctuation range to be fairly steady width.",
+  },
+  {
+    term: "Chart",
+    definition:
+      "A chart graphically represents the historical price changes of a financial instrument during a specific period of time and it is simpler to determine the trends and patterns.",
+  },
+  {
+    term: "Clearing",
+    definition:
+      "Clearing is the procedure of registering the financial transactions between the participants involved and ensuring payments of the promises.",
+  },
+  {
+    term: "Commodity Channel Index (CCI)",
+    definition:
+      "The Commodity Channel Index (CCI) was created by Donald Lambert to detect fresh market trends. Today, it is commonly used to determine how far the current price deviates from its average value.",
+  },
+  {
+    term: "Commodity Currencies",
+    definition:
+      "These are the currencies of countries whose primary source of income is the export of natural resources. These include the Canadian dollar, Australian dollar, New Zealand dollar, Russian ruble among others.",
+  },
+  {
+    term: "Cross Pair",
+    definition:
+      "A cross pair is an exchange rate between two currencies determined using their respective rates against a third currency, typically excluding the US dollar.",
+  },
+  {
+    term: "Currency Cross Pairs",
+    definition:
+      "The foreign exchange market terminology calls currency pairings which does not involve the US dollar cross currency pairs or simply crosses.",
+  },
+  {
+    term: "Currency Pair",
+    definition:
+      "A trading instrument that depicts the process of purchasing one currency while selling another.",
+  },
+  {
+    term: "Daily Chart",
+    definition:
+      "A market chart with each time unit representing a full trading day.",
+  },
+  {
+    term: "Day Trading",
+    definition:
+      "Day trading involves opening and closing all positions inside a single trading day.",
+  },
+  {
+    term: "Dealer",
+    definition:
+      "A person or business that serves as the main counterparty or executor in a transaction.",
+  },
+  {
+    term: "DeMarker (DeM) Indicator",
+    definition:
+      "A technical analysis tool used to identify probable buy or sell opportunities. It entails intervals of high price volatility which adds on to the market tops and bottoms.",
+  },
+  {
+    term: "Depreciation",
+    definition:
+      "The reduction in value of an asset to an extent as time passes, usually because of wear and tear, use or being outdated.",
+  },
+  {
+    term: "Derivative",
+    definition:
+      "The value of a financial instrument is determined by the performance of an underlying asset or assets which may consist of indices, equities, commodities, currencies and other financial instruments.",
+  },
+  {
+    term: "Descending Triangle",
+    definition:
+      "A bearish continuation pattern is a chart pattern that typically shows up during a downward trend. It is distinguished by a sequence of lower highs and a horizontal support level, implying possibility for more downward movement.",
+  },
+  {
+    term: "Diamond",
+    definition:
+      "A pattern on the chart that suggests the current trend might be poised to turn around. The diamond pattern, which most typically forms during an advance, indicates a shift in market mood.",
+  },
+  {
+    term: "Double Bottom",
+    definition:
+      "A bullish reversal chart pattern that develops following a prolonged downturn. It happens when the price strikes a support level twice with a moderate rebound in between, indicating a decrease in selling pressure. The longer the pattern takes to emerge, the more reliable it is as a reversal indication.",
+  },
+  {
+    term: "Economic Calendar",
+    definition:
+      "To do so, brokers and financial platforms offer an economic calendar, a list of economic events and data releases of a significant nature and are capable of affecting the price of assets. Market shakers participate in forecasting market volatility to come up with strategies accordingly.",
+  },
+  {
+    term: "Envelope Indicator",
+    definition:
+      "The Envelopes indicator can detect overbought and oversold market conditions. Through showing potential reversal points traders can decide the position at which they enter or exit as well as determine future breakouts of trends.",
+  },
+  {
+    term: "EUR/JPY",
+    definition:
+      "The currency pair EUR/JPY refers to the parity between the Euro and the Japanese yen, i.e. how many Japanese yen one can buy at a single Euro.",
+  },
+  {
+    term: "Euro",
+    definition:
+      "It circulates the Euro that is allowed to be used in 19 countries of the European Union that encompass Austria, Belgium, Germany, Greece, Ireland, Spain, Italy, Cyprus, Latvia and Lithuania, Luxembourg, Malta,the Netherlands, Portugal, Slovakia, Slovenia, and Estonia.",
+  },
+  {
+    term: "EURUSD",
+    definition:
+      "It is the biggest traded in the world where Euro is the base currency and the quoted currency is the US dollar.",
+  },
+  {
+    term: "Expiration",
+    definition:
+      "Expiration refers to the final date for exercising or canceling a derivative contract (e.g., futures or options).",
+  },
+  {
+    term: "Flag",
+    definition:
+      "A price chart pattern which is observed in a short term chart and shows that the direction of the trend being experienced will continue. It indicates that the market's trajectory is likely to be steady in the near future. This generally forms over one to two weeks on a daily chart.",
+  },
+  {
+    term: "Force Index",
+    definition:
+      "To measure how strong the price movements are, Alexander Elder has developed an indicator that searches three parameters namely direction, size, and volume. This oscillator swings between the zero line, which determines the equilibrium between the buying and the selling pressures.",
+  },
+  {
+    term: "ForexForex",
+    definition:
+      "The term forex could be described as being a universal market under which currency pairs can be bought, sold, exchanged and speculated. Commercial banks, central banks, hedge funds, investment firms, retail brokers, and individual traders are all participants in the foreign exchange market.",
+  },
+  {
+    term: "Forex Dealer",
+    definition:
+      "A forex dealer is a regulated financial organization or business that handles and administers foreign currency transactions.",
+  },
+  {
+    term: "Forex Resistance",
+    definition:
+      "A resistance level in Forex is a price point that serves as a ceiling, stopping the currency price from increasing any further.",
+  },
+  {
+    term: "Forward Transaction",
+    definition:
+      "A forward transaction is a contractual agreement in which the buyer and seller agree to exchange an asset (such as currency or commodities) at a future date, with the price established at the time of the arrangement",
+  },
+  {
+    term: "Fractals Indicator",
+    definition:
+      "The Fractals Indicator determines the local high and low in the movement of price, showing a time when the trend has stopped and has gone into reverse. These turning points are called peak (or highs) and trough (or lows).",
+  },
+  {
+    term: "Fundamental Analysis",
+    definition:
+      "Fundamental analysis investigates economic and political developments that may have an impact on the future direction of financial market values. Forex relies mostly on macroeconomic factors.",
+  },
+  {
+    term: "Gap",
+    definition:
+      "Where the price of an asset is moving a great deal and no trades occur between movements, it creates a gap.",
+  },
+  {
+    term: "Gator Oscillator",
+    definition:
+      "The Gator Oscillator is a companion tool to the Alligator indicator that shows the degree of convergence and divergence among its three SMAs. It focuses on the Alligator's hunger (trending markets) and sleep (non-trending markets) phases.",
+  },
+  {
+    term: "GBP/USD",
+    definition:
+      "The GBP/USD currency pair trades the British Pound against the US Dollar. The quote indicates how many US dollars are necessary to buy one British pound.",
+  },
+  {
+    term: "Growth Stock",
+    definition:
+      "A growth stock is a company's stock that has shown above-average profit indicators over a specific time period (usually a few years) or is predicted to exhibit considerable growth potential in the near future. Such equities frequently increase in value far quicker than regular stocks, but they can also fall sharply. Shareholders in growth companies typically get little to no dividends because profits are frequently reinvested in the company's development—particularly when the company is new.",
+  },
+  {
+    term: "Head and Shoulders",
+    definition:
+      "The head and shoulders price pattern indicates the end of an existing trend and a reversal in price movement. This pattern usually appears during a well-established uptrend and is distinguished by its unmistakable three-peak structure, with the main peak (the head) higher than the two side peaks (the shoulders).",
+  },
+  {
+    term: "Hedge / Hedging",
+    definition:
+      "A risk management technique that aims to decrease exposure to volatile price swings. Hedging typically entails taking an offsetting position in a comparable asset or using forward contracts to lock in pricing. It becomes more prevalent during periods of market instability.",
+  },
+  {
+    term: "The Ichimoku Indicator",
+    definition:
+      "Ichimoku indicator is a complete technical analysis method that was developed by a Japanese author Goichi Hosoda in 1968. It enables traders to quickly identify the direction of trends, momentum and strength through the analysis of five different components in addition to price activity. The standard will measure individual behavior as a factor that affects changes in the market, which run on a cycle.",
+  },
+  {
+    term: "Inflation",
+    definition:
+      "A steady rise in the average level of prices for goods and services over time.",
+  },
+  {
+    term: "Inverse Head and Shoulders",
+    definition:
+      "A reversal chart pattern that generally marks finality of a downtrend and a possible beginning of an uptrend. It is characterised by three depressions with the central depression (the so-called head) the deepest and the two outer depressions (the so-called shoulders) slightly higher and approximately the same height.",
+  },
+  {
+    term: "Leverage",
+    definition:
+      "Brokers offer a service that enables traders to open positions significantly larger than their own capital. It effectively acts as a loan, amplifying both potential gains and potential losses.",
+  },
+  {
+    term: "LIBID ",
+    definition:
+      "The interest rate at which banks are willing to lend to one another is known as the London Interbank Bid Rate, or LIBID.",
+  },
+  {
+    term: "LIBOR ",
+    definition:
+      "The rate at which banks are willing to lend to one another is known as the London Interbank Offered Rate, or LIBOR.",
+  },
+  {
+    term: "Limit Order ",
+    definition:
+      "An order for the purchase or sale of a specific quantity of an asset at a defined price or higher. For example, a trader may place a buy limit order of 107.50 while the current USD/JPY price is 108.24/108.26 (Bid/Ask). The order will be executed, initiating the buy position, if the market drops and the ask price hits 107.50.",
+  },
+  {
+    term: "Liquid Market",
+    definition:
+      "A market in which traders can purchase and sell enormous amounts of assets at any moment for low transaction costs.",
+  },
+  {
+    term: "Listed Stocks",
+    definition:
+      "Stocks authorized for trading on stock exchanges. Before being included, shares must go through a listing procedure in which companies are evaluated for compliance with specified requirements such as market capitalization, sales volume, the number of shares in circulation, and other factors. Only those who achieve these conditions can trade.",
+  },
+  {
+    term: "Lot",
+    definition:
+      "A standardised amount of financial assets traded in a single transaction.",
+  },
+  {
+    term: "Margin",
+    definition:
+      "The minimum amount of money a client must have in their account to keep positions open.",
+  },
+  {
+    term: "Margin Call",
+    definition:
+      "A broker requests that the client deposit additional monies into their trading account to meet margin requirements.",
+  },
+  {
+    term: "Market Facilitation Index (MFI-Bill Williams)",
+    definition:
+      "A technical measurement of the readiness of the market to become price-adaptive. The actual numbers are not as relevant as is the gauging of the value against the trading volume and thus can help the trader determine times of heavy or light activity.",
+  },
+  {
+    term: "Market Order",
+    definition:
+      "Market orders are directions to buy or sell a financial item at the most advantageous available market.",
+  },
+  {
+    term: "Momentum Indicator",
+    definition:
+      "One technical analysis technique where the rate of price movement is calculated by comparing the present price to a prior price between a specific time. It creates aid in ascertaining the power and heading of a trend",
+  },
+  {
+    term: "Money Flow Index (MFI)",
+    definition:
+      "This momentum technical indicator measures price and volume data using the Money Flow Index (MFI) to assess the purchasing and selling pressure. It helps identify an overbought or an oversold situation in a market.",
+  },
+  {
+    term: "Moving Average Envelops",
+    definition:
+      "Two bands make up this technical indicator, which is displayed at predetermined percentages above and below the moving average. It is useful to distinguish overbought and oversold markets and also trend changes.",
+  },
+  {
+    term: "Moving Average Indicator",
+    definition:
+      "The Moving Average is a technical analysis indicator used to find out the average price of an asset with respect to time. It eliminates short-term movements in the prices, thus it would be easier to find the direction and the strength of the trend.",
+  },
+  {
+    term: "Moving Average of Oscillator (OsMA)",
+    definition:
+      "Moving Average of Oscillator (OsMA) is a technical indicator that distinguishes between an oscillator type (like MACD) and the oscillator's moving average, commonly known as the signal line.",
+  },
+  {
+    term: "Moving Average Convergence/Divergence Indicator (MACD)",
+    definition:
+      "The MACD is a technical indicator which shows the relationship between two prices moving averages of an asset. Based on these three ingredients, it determines the strength of the trend, the direction of the trend as well as likely points of reversal using the fast line, the slow line, and the signal line.",
+  },
+  {
+    term: "OCO Order",
+    definition:
+      "Two pending orders placed at prices different from the current market price make up an OCO (One Cancels the Other) order. When one order is completed, the other is instantly canceled",
+  },
+  {
+    term: "Offer",
+    definition:
+      "The offer price, or ask price, is the price at which a currency or item can be purchased.",
+  },
+  {
+    term: "On Balance Volume (OBV)",
+    definition:
+      "On-Balance Volume is a cumulative indicator based on trade volumes that depicts the link between transaction volume and asset price movements.",
+  },
+  {
+    term: "Open Position",
+    definition:
+      "A transaction that is still active and has not been closed by its opposite transaction.",
+  },
+  {
+    term: "Order",
+    definition: "A client's order to undertake a trading operation.",
+  },
+  {
+    term: "Out-of-Money Option",
+    definition:
+      "Out-of-the-money options are those whose value is less than the buying price. For example, if you estimate that an asset's price would rise but then fall, your forecast is incorrect, leading to a loss. Before expiration, an option can fluctuate between in-the-money (profitable) and out-of-the-money (loss-making).",
+  },
+  {
+    term: "Pair",
+    definition:
+      "A financial tool that shows how much one currency is worth in relation to another.",
+  },
+  {
+    term: "Parabolic Indicator",
+    definition:
+      "The Parabolic Indicator is intended to confirm or reject a trend, detect correction phases or sideways movement, and recommend potential closing targets for positions. Its principle is summarized by the phrase stop and reverse (SAR).",
+  },
 ];
 
 export default function ForexGlossary() {
