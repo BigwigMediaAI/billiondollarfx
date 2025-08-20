@@ -177,12 +177,12 @@ export default function Sidebar({
 
         {/* TOOLS */}
         <Section title="Tools & Add-Ons">
-          <NavLink
+          {/* <NavLink
             href="/social-trading"
             label="Social Trading"
             icon={Users}
             pathname={pathname}
-          />
+          /> */}
           {/* <NavLink
             href="/pamm"
             label="PAMM"
