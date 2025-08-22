@@ -162,12 +162,12 @@ export default function Sidebar({
               },
               {
                 label: "News Feed",
-                href: "/market/news",
+                href: "/top-news",
                 icon: MessageCircle,
               },
               {
                 label: "Forex Indicators",
-                href: "/market/indicators",
+                href: "/indicators",
                 icon: BarChart2,
               },
             ]}
