@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
+  FaPhoneAlt,
 } from "react-icons/fa";
 import logo from "../assets/bdfx.gif";
 import Link from "next/link";
@@ -95,11 +96,11 @@ export default function Footer() {
               <FaEnvelope className="text-blue-400" /> support@abc.com
             </li>
             <li className="flex items-center gap-2">
-              <FaPhone className="text-cyan-400" /> +971509818742
+              <FaPhoneAlt className="text-cyan-400" /> +971 509818742
             </li>
             <li className="flex items-center gap-2">
-              <FaPhone className="text-cyan-400" />
-              +918140431207
+              <FaPhoneAlt className="text-cyan-400" />
+              +91 8140431207
             </li>
           </ul>
           <div className="flex gap-3 mt-4 text-gray-400">
@@ -181,16 +182,6 @@ export default function Footer() {
               {item}
             </span>
           ))}
-        </div>
-        <div className="w-full flex justify-center mt-4">
-          <a
-            href="https://www.bigwigdigital.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--primary-color)] px-4 py-3 uppercase text-xs tracking-widest text-center transition-colors "
-          >
-            Made & Marketed with ❤️ by Bigwig Digital
-          </a>
         </div>
       </div>
     </footer>

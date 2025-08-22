@@ -6,13 +6,22 @@ const LanguageSelector = () => {
     const selectedLang = e.target.value;
     if (!selectedLang) return;
 
+    if (selectedLang === "en") {
+      // 🔹 Clear cookie to reset back to original English
+      document.cookie =
+        "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+      window.location.hash = "";
+      window.location.reload();
+      return;
+    }
+
     // 1️⃣ Set the cookie that Google Translate reads:
     document.cookie = `googtrans=/en/${selectedLang};path=/`;
 
-    // 2️⃣ Optionally set URL hash (for some implementations):
+    // 2️⃣ Optionally set URL hash
     window.location.hash = `#googtrans=en/${selectedLang}`;
 
-    // 3️⃣ Click the matching language anchor in the iframe:
+    // 3️⃣ Click the matching language anchor in the iframe
     const intervalId = setInterval(() => {
       const iframe = document.querySelector(
         "iframe.goog-te-menu-frame"
@@ -36,7 +45,7 @@ const LanguageSelector = () => {
 
     setTimeout(() => clearInterval(intervalId), 5000);
 
-    // 4️⃣ Force a reload so translation applies everywhere:
+    // 4️⃣ Force reload so translation applies everywhere
     setTimeout(() => window.location.reload(), 500);
   };
 
