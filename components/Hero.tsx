@@ -1,18 +1,34 @@
 "use client";
 import heroImage from "../assets/hero.png";
 import Button from "./Button";
-import Typewriter from "typewriter-effect";
 import icon1 from "../assets/icons1/icon.png";
 import icon2 from "../assets/icons1/icon2.png";
 import icon3 from "../assets/icons1/icon3.png";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
   const router = useRouter();
   const handleClick = () => {
     router.push("/register");
   };
+
+  // 👇 Messages to rotate
+  const messages = [
+    "Global Markets \n Billion-Dollar Precision",
+    // "Global Forex \n Local Impact",
+    // "Step Into the World of Smart\n Profitable Trades",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % messages.length);
+    }, 3000); // ⏱️ Change every 3s
+    return () => clearInterval(interval);
+  }, [messages.length]);
 
   return (
     <div className="relative font-montserrat bg-[var(--bg)] py-20 md:pt-0">
@@ -25,23 +41,17 @@ export default function Hero() {
             backgroundImage: `url(${heroImage.src})`,
           }}
         ></div>
-        <div className="absolute inset-0 bg-black/50   "></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Centered Content */}
-        <div className="relative  mx-auto z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <div className="relative mx-auto z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <h1 className="text-2xl md:text-3xl max-w-2xl font-bold my-6 leading-tight whitespace-pre-wrap">
-            <Typewriter
-              options={{
-                strings: [
-                  "Global Markets \n Billion-Dollar Precision",
-                  "Global Forex \n Local Impact",
-                  "Step Into the World of Smart\n Profitable Trades",
-                ],
-                autoStart: true,
-                loop: true,
-                delay: 50,
-              }}
-            />
+            <span
+              key={currentIndex} // 👈 triggers animation when index changes
+              className="block transition-opacity duration-700 ease-in-out opacity-100 animate-fade"
+            >
+              {messages[currentIndex]}
+            </span>
           </h1>
           <p className="text-md md:max-w-3xl mb-6 text-gray-400">
             Access lightning-speed execution, 300+ tradable assets, and elite
@@ -62,12 +72,12 @@ export default function Hero() {
           {/* Heading + Button */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-10 text-center md:text-left">
             <div className="space-y-3">
-              <h2 className="text-2xl  font-semibold leading-tight">
+              <h2 className="text-2xl font-semibold leading-tight">
                 Launch Your{" "}
                 <span className="text-[var(--primary)]">Forex Career</span>{" "}
                 Today
               </h2>
-              <p className="text-sm italic ">
+              <p className="text-sm italic">
                 Start trading in minutes with Billion Dollar FX.
               </p>
             </div>
