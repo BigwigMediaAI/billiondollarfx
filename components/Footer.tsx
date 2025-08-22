@@ -95,7 +95,11 @@ export default function Footer() {
               <FaEnvelope className="text-blue-400" /> support@abc.com
             </li>
             <li className="flex items-center gap-2">
-              <FaPhone className="text-cyan-400" /> +971 509818742
+              <FaPhone className="text-cyan-400" /> +971509818742
+            </li>
+            <li className="flex items-center gap-2">
+              <FaPhone className="text-cyan-400" />
+              +918140431207
             </li>
           </ul>
           <div className="flex gap-3 mt-4 text-gray-400">

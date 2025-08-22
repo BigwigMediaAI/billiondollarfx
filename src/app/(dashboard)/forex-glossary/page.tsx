@@ -534,6 +534,241 @@ const glossaryData: GlossaryItem[] = [
     definition:
       "The Parabolic Indicator is intended to confirm or reject a trend, detect correction phases or sideways movement, and recommend potential closing targets for positions. Its principle is summarized by the phrase stop and reverse (SAR).",
   },
+  {
+    term: "Pennant",
+    definition:
+      "A pennant is a short-term chart pattern that indicates trend continuity, implying that the present direction will likely persist in the near future. On a daily chart, this pattern usually appears over a week or two.",
+  },
+  {
+    term: "Point or Pip",
+    definition:
+      "A pip is the smallest potential variation to a pricing quote. Most currency pairs are stated to four or five decimal places, thus one pip represents 0.0001 or 0.00001. For JPY pairs, a pip equals 0.01 or 0.001 and is expressed to two or three decimals. In other financial instruments, a pip typically fluctuates between 0.1 and 0.001.",
+  },
+  {
+    term: "Portfolio Trading",
+    definition:
+      "The simultaneous purchase and sale of a set of securities organized as a portfolio based on particular criteria.",
+  },
+  {
+    term: "Profit",
+    definition:
+      "The good consequence or financial gain that arises from trade activity.",
+  },
+  {
+    term: "Quoted Currency",
+    definition:
+      "In a currency pair, the second currency listed is known as the quoted currency.",
+  },
+  {
+    term: "Rate",
+    definition: "The exchange rate between two currencies.",
+  },
+  {
+    term: "Relative Strength Index (RSI)",
+    definition:
+      "It measures the strength or weakness of a trend. It assesses the speed of price swings by comparing recent gains and losses to closing prices.",
+  },
+  {
+    term: "Relative Vigor Index (RVI)",
+    definition:
+      "A technical analysis tool called the Relative Vigor Index can be used to determine whether the current trend is trending upward or downward. It is founded on the perception that in bull markets the end of an issue is more when compared to the cost of opening, and in a bearish market the end cost is low in comparison with the beginning of an issue.",
+  },
+  {
+    term: "Resistance Level",
+    definition:
+      "In technical analysis, a resistance level refers to a price level when significant selling activity prevents future price increases.",
+  },
+  {
+    term: "Retail Customers",
+    definition:
+      "A forex trader who does not fulfill the definition of an eligible contract participant under the Commodity Exchange Act. This frequently includes most small businesses and people with assets under $10 million.",
+  },
+  {
+    term: "Risk Management",
+    definition:
+      "Risk management is the process of identifying and analyzing risks, implementing measures to decrease them to an acceptable level, and continuously monitoring those risks.",
+  },
+  {
+    term: "Rollover",
+    definition:
+      "The act of extending the settlement date of an open position by transferring it to the following settlement date.",
+  },
+  {
+    term: "Saucer",
+    definition:
+      "A saucer is a long-term technical analysis pattern that shows a slow transition from a downtrend to an upswing. It usually has a rounded, arc-shaped bottom, which is most noticeable on weekly charts. The creation of a saucer might take over a year.",
+  },
+  {
+    term: "Security Deposit",
+    definition:
+      "The amount of money needed to start or maintain a trading position is referred to as margin.",
+  },
+  {
+    term: "Settlement",
+    definition:
+      "The procedure of delivering securities to the buyer in exchange for payment from the seller. This usually happens one to three days after the transaction date.",
+  },
+  {
+    term: "Spot Market",
+    definition:
+      "A market where transactions happen instantly. Although final settlements may take up to two business days, ownership rights are transferred from the seller to the buyer in the spot market at the moment of the transaction.",
+  },
+  {
+    term: "Spot Price",
+    definition: "The spot market price as of right now for a quick settlement.",
+  },
+  {
+    term: "Disperse",
+    definition:
+      "The variation between the asking and bid prices. The pricing feed of a trading platform displays both prices. One important measure of an asset's liquidity is its spread.",
+  },
+  {
+    term: "Sterling",
+    definition: "A popular way to refer to the British pound (GBP).",
+  },
+  {
+    term: "Stochastic Oscillator",
+    definition:
+      "A technical indicator that illustrates how the current closing price compares to the price range over a given number of sessions. It is based on the premise that in an uptrend, prices tend to close around the range's high, while in a downtrend, they close near the low.",
+  },
+  {
+    term: "Stock",
+    definition:
+      "A share signifies ownership in a firm, allowing investors to receive dividends and profit from share price variations. Companies can raise capital by issuing shares, and investors can profit from dividends and share price movements.",
+  },
+  {
+    term: "Strike Price",
+    definition:
+      "The price at which a call option buyer can purchase or sell a certain currency pair or asset is called the exercise price, sometimes referred to as the strike price.",
+  },
+  {
+    term: "Support Level",
+    definition:
+      "In technical analysis, a price level at which purchasing interest is sufficient to prevent additional price decreases. It serves as a floor where asset prices tend to stabilize or rebound.",
+  },
+  {
+    term: "Swap",
+    definition:
+      "The credit or debit of money to a trader's account when a position is held overnight (rolled over to the next value date). The swap amount is determined by the position size and the interest rate differential between the base and quoted currencies (or assets) in the interbank market.",
+  },
+  {
+    term: "Symmetric Triangle",
+    definition:
+      "A Symmetric Triangle is a continuation chart pattern that can occur during an upswing or a downtrend. It indicates that after the pattern is completed, the current trend will most likely continue.",
+  },
+  {
+    term: "Take Profit Order",
+    definition:
+      "Take Profit orders cause a trade to automatically close once the market has reached a predetermined profit target which is set at a price higher than the entry/execution price of a pending order.",
+  },
+  {
+    term: "Technical Analysis",
+    definition:
+      "Technical analysis refers to the projection of future market trends of the financial and commodity market through the past behaviour and price trends.",
+  },
+  {
+    term: "Technical Indicators",
+    definition:
+      "Technical indicators play an important role in technical analysis and can be utilized to predict the market trend. Examples are the indicators, oscillators, trend indicators, and volume-based strategies of Bill Williams.",
+  },
+  {
+    term: "Tick",
+    definition:
+      "A tick is the smallest potential price fluctuation of a financial asset.",
+  },
+  {
+    term: "Trailing Stop",
+    definition:
+      "A trailing stop is a system that automatically adjusts a stop loss order. When a position's profit reaches a predetermined threshold, the Stop Loss moves closer to the current market price while maintaining the same distance between them.",
+  },
+  {
+    term: "Transaction Costs",
+    definition:
+      "These are the costs spent by a trader when doing currency or commodity transactions, such as broker commissions and fees.",
+  },
+  {
+    term: "Transaction Date",
+    definition: "The precise day that a transaction or trade is finished.",
+  },
+  {
+    term: "Trend Continuation Patterns",
+    definition:
+      "Trend continuation patterns (graphical models) emerge after minor pauses in an established market trend. They predict that the current price movement will likely continue rather than reverse.",
+  },
+  {
+    term: "Trend Line",
+    definition:
+      "A line drawn on a price chart that helps identify the market trend by joining a number of significant highs or lows.",
+  },
+  {
+    term: "Trend Reversal Patterns",
+    definition:
+      "Trend reversal patterns are graphical structures that emerge after a trend has reached its peak or bottom. They imply a high probability that the trend may shift direction.",
+  },
+  {
+    term: "Triple Bottom",
+    definition:
+      "A triple bottom pattern often occurs during a slump and indicates a potential upward reversal. It is regarded as more dependable than the double bottom pattern.",
+  },
+  {
+    term: "Triple Top",
+    definition:
+      "Usually forming during an upswing, a triple top pattern signals a possible reversal and following market decline. It is considered more significant than the double top motif.",
+  },
+  {
+    term: "USDCAD",
+    definition:
+      "A currency pair that includes the US dollar (USD) and the Canadian dollar (CAD). It displays the amount of Canadian dollars required to purchase/buy one US dollar.",
+  },
+  {
+    term: "USDCHF",
+    definition:
+      "The Swiss franc (CHF) is the quoted currency in the USDCHF currency pair, while the US dollar (USD) serves as the base currency.",
+  },
+  {
+    term: "USDJPY",
+    definition:
+      "A currency pair with the US dollar (USD) as the base currency and the Japanese yen (JPY) as the currency.",
+  },
+  {
+    term: "Value Date",
+    definition:
+      "It refers to the date when the parties involved in a transaction must settle monies by delivering the purchased currency and paying the seller.",
+  },
+  {
+    term: "Volatility",
+    definition:
+      "Volatility is a measure of risk that measures an asset's price changes, typically indicated through statistical indicators.",
+  },
+  {
+    term: "Volume Indicator",
+    definition:
+      "Volume Indicator is a technical analysis tool that tracks investor trading activity over a given time period.",
+  },
+  {
+    term: "Volume Indicators",
+    definition:
+      "These metrics measure market participation, showing the strength and intensity of trade in an asset.",
+  },
+  {
+    term: "Wedge",
+    definition:
+      "A wedge is a short-term chart pattern that indicates the continuation of the present trend, implying that its direction will remain steady in the near future. On a daily chart, it usually appears within one or two weeks.",
+  },
+  {
+    term: "Williams Alligator",
+    definition:
+      "An indicator used to identify trends and determine their direction.",
+  },
+  {
+    term: "Williams Percentage Range Indicator",
+    definition:
+      "A technical tool used to identify overbought or oversold levels in an asset and predict future reversal points.",
+  },
+  {
+    term: "Yen",
+    definition: "The official currency of Japan.",
+  },
 ];
 
 export default function ForexGlossary() {

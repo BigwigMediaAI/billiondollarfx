@@ -2,7 +2,8 @@
 
 import Sidebar from "../../../components/Sidebar";
 import Topbar from "../../../components/Topbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function DashboardLayout({
   children,
@@ -10,6 +11,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // 👈 check token from localStorage
+    if (!token) {
+      router.replace("/login"); // 👈 redirect to landing page if no token
+    }
+  }, [router]);
 
   return (
     <div className="flex h-screen overflow-hidden relative">
