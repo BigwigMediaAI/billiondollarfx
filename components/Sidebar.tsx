@@ -105,12 +105,12 @@ export default function Sidebar({
             icon={BarChart3}
             pathname={pathname}
           />
-          <NavLink
+          {/* <NavLink
             href="/technical-analysis"
             label="Technical Analysis"
             icon={LineChart}
             pathname={pathname}
-          />
+          /> */}
         </Section>
 
         {/* FUNDS */}
@@ -127,12 +127,12 @@ export default function Sidebar({
             icon={ArrowRightLeft}
             pathname={pathname}
           />
-          <NavLink
+          {/* <NavLink
             href="/transfers"
             label="Transfers"
             icon={Database}
             pathname={pathname}
-          />
+          /> */}
           <NavLink
             href="/transactions"
             label="Transactions"
