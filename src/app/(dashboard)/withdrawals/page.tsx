@@ -83,7 +83,7 @@ function Withdrawal() {
     <div className="flex flex-col gap-4">
       <div className="w-full rounded-md overflow-hidden shadow-md">
         <video
-          src="/withdraw.mp4" // 👈 place your video in public/banner/
+          src="/BILLION$ FX WEBSITE WITHDRAWALS.mp4" // 👈 place your video in public/banner/
           className="w-full object-cover rounded-md"
           autoPlay
           muted
