@@ -169,7 +169,7 @@ function Withdrawal() {
                     value={form.amount}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
                   />
                 </div>
 

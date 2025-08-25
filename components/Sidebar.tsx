@@ -75,6 +75,7 @@ export default function Sidebar({
             label="Dashboard"
             icon={LayoutDashboard}
             pathname={pathname}
+            onClose={onClose}
           />
 
           <Dropdown
@@ -91,6 +92,7 @@ export default function Sidebar({
               },
             ]}
             pathname={pathname}
+            onClose={onClose}
           />
 
           <NavLink
@@ -98,12 +100,14 @@ export default function Sidebar({
             label="MT5 Web Trader"
             icon={Globe}
             pathname={pathname}
+            onClose={onClose}
           />
           <NavLink
             href="/Ourplatform"
             label="Platform"
             icon={BarChart3}
             pathname={pathname}
+            onClose={onClose}
           />
           {/* <NavLink
             href="/technical-analysis"
@@ -120,12 +124,14 @@ export default function Sidebar({
             label="Deposits"
             icon={Wallet}
             pathname={pathname}
+            onClose={onClose}
           />
           <NavLink
             href="/withdrawals"
             label="Withdrawals"
             icon={ArrowRightLeft}
             pathname={pathname}
+            onClose={onClose}
           />
           {/* <NavLink
             href="/transfers"
@@ -138,6 +144,7 @@ export default function Sidebar({
             label="Transactions"
             icon={BarChart2}
             pathname={pathname}
+            onClose={onClose}
           />
         </Section>
 
@@ -148,6 +155,7 @@ export default function Sidebar({
             label="Forex Glossary"
             icon={Book}
             pathname={pathname}
+            onClose={onClose}
           />
           <Dropdown
             label="Market Data"
@@ -172,6 +180,7 @@ export default function Sidebar({
               },
             ]}
             pathname={pathname}
+            onClose={onClose}
           />
         </Section>
 
@@ -194,12 +203,14 @@ export default function Sidebar({
             label="Introducing Broker"
             icon={User}
             pathname={pathname}
+            onClose={onClose}
           />
           <NavLink
             href="/support"
             label="Support Tickets"
             icon={MessageCircle}
             pathname={pathname}
+            onClose={onClose}
           />
         </Section>
 
@@ -210,12 +221,14 @@ export default function Sidebar({
             label="Settings"
             icon={Settings}
             pathname={pathname}
+            onClose={onClose}
           />
           <NavLink
             href="/signout"
             label="Signout"
             icon={LogOut}
             pathname={pathname}
+            onClose={onClose}
           />
         </Section>
       </div>
@@ -244,16 +257,21 @@ function NavLink({
   label,
   icon: Icon,
   pathname,
+  onClose, // 👈 added
 }: {
   href: string;
   label: string;
   icon: React.ElementType;
   pathname: string;
+  onClose?: () => void;
 }) {
   const isActive = pathname === href;
   return (
     <Link
       href={href}
+      onClick={() => {
+        if (onClose) onClose(); // 👈 close sidebar on mobile
+      }}
       className={clsx(
         "flex items-center gap-2 px-4 py-2 rounded hover:text-[var(--primary)] transition-all text-sm",
         isActive && "text-[var(--primary)] font-semibold"
@@ -272,6 +290,7 @@ function Dropdown({
   onToggle,
   items,
   pathname,
+  onClose,
 }: {
   label: string;
   icon: React.ElementType;
@@ -279,6 +298,7 @@ function Dropdown({
   onToggle: () => void;
   items: { label: string; href: string; icon: React.ElementType }[];
   pathname: string;
+  onClose?: () => void;
 }) {
   return (
     <div>
@@ -301,6 +321,7 @@ function Dropdown({
               label={item.label}
               icon={item.icon}
               pathname={pathname}
+              onClose={onClose}
             />
           ))}
         </div>
