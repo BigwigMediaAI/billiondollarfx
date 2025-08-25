@@ -70,12 +70,12 @@ export default function Topbar({
         <button title="Fullscreen" onClick={toggleFullscreen}>
           {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />}
         </button>
-        <button title="Notifications">
+        {/* <button title="Notifications">
           <Bell size={20} />
         </button>
         <button title="Language">
           <Globe size={20} />
-        </button>
+        </button> */}
 
         {/* User dropdown */}
         <div className="relative">

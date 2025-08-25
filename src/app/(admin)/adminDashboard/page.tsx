@@ -6,6 +6,7 @@ import { Users } from "lucide-react";
 
 export default function AdminDashboard() {
   const [totalUsers, setTotalUsers] = useState<number | null>(null);
+  const [totalBrokers, setTotalBrokers] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,7 +14,14 @@ export default function AdminDashboard() {
       .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/users`)
       .then((res) => {
         setTotalUsers(res.data.length || 0);
+      });
+
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/brokers`)
+      .then((res) => {
+        setTotalBrokers(res.data.length || 0);
       })
+
       .catch((err) => {
         console.error("Failed to fetch total users:", err);
         setTotalUsers(0);
@@ -37,6 +45,11 @@ export default function AdminDashboard() {
         <DashboardCard
           title="Total Users"
           value={loading ? null : totalUsers}
+          icon={<Users size={28} />}
+        />
+        <DashboardCard
+          title="Total Brokers"
+          value={loading ? null : totalBrokers}
           icon={<Users size={28} />}
         />
         {/* You can add more DashboardCard components here later */}
