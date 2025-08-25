@@ -1,14 +1,22 @@
 "use client";
 import { useState } from "react";
 
+// Define a proper type instead of `any`
+type Transaction = {
+  date: string;
+  amount: number;
+  account: string;
+  status: "Pending" | "Completed" | "Failed"; // restricts status to known values
+};
+
 const TransactionPage = () => {
   const [activeTab, setActiveTab] = useState<"deposit" | "withdrawal">(
     "deposit"
   );
 
-  // Placeholder: no transactions yet
-  const depositData: any[] = [];
-  const withdrawalData: any[] = [];
+  // ✅ Strongly typed empty arrays
+  const depositData: Transaction[] = [];
+  const withdrawalData: Transaction[] = [];
 
   // Pick table data based on tab
   const currentData = activeTab === "deposit" ? depositData : withdrawalData;
@@ -26,7 +34,7 @@ const TransactionPage = () => {
       </div>
 
       {/* ✅ Main Content */}
-      <div className="h-screen md:h-[80vh] bg-gradient-to-br from-[#0a0f1d] to-[#0f172a] px-2 md:px-12  py-10 text-white">
+      <div className="h-screen md:h-[80vh] bg-gradient-to-br from-[#0a0f1d] to-[#0f172a] px-2 md:px-12 py-10 text-white">
         <h1 className="text-2xl font-bold mb-8">Transaction History</h1>
 
         {/* ✅ Tabs */}
