@@ -10,7 +10,7 @@ import RegisterModal from "../../../../components/CreateAccount";
 import UpdatePasswordModal from "../../../../components/UpdatePasswordModal";
 import { useRouter } from "next/navigation";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
-import bannerImage from "../../../../assets/banner_mt.png";
+import bannerImage from "../../../../assets/grgrgr 1.jpg";
 
 interface Account {
   _id: string;
