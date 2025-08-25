@@ -8,7 +8,6 @@ import Button from "../../../../components/Button";
 import RegisterModal from "../../../../components/CreateAccount"; // adjust path as needed
 import axios from "axios";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
-import bannerImage from "../../../../assets/banner_mt.png";
 
 interface Account {
   _id: string;
