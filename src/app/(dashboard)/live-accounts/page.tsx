@@ -10,6 +10,7 @@ import RegisterModal from "../../../../components/CreateAccount";
 import UpdatePasswordModal from "../../../../components/UpdatePasswordModal";
 import { useRouter } from "next/navigation";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
+import bannerImage from "../../../../assets/banner_mt.png";
 
 interface Account {
   _id: string;
@@ -105,186 +106,210 @@ export default function LiveAccounts() {
   if (!isLoggedIn) return null;
 
   return (
-    <div className="h-screen md:h-[80vh] rounded-2xl flex flex-col lg:flex-row gap-6 px-6 py-10 bg-gradient-to-br from-[#0a0f1d] to-[#0f172a] text-white">
-      {/* Left - Account Numbers */}
-      <div className="w-full lg:w-[300px] h-fit bg-[#121a2a] border border-gray-800 rounded-2xl p-6 shadow-lg space-y-4">
-        <h2 className="text-xl font-semibold text-[var(--primary)] mb-2">
-          Live MT5 Accounts
-        </h2>
+    <div className="flex flex-col gap-4">
+      {/* ✅ Top Banner Image */}
+      <div className="w-full rounded-md overflow-hidden shadow-md">
+        <Image
+          src={bannerImage} // 👈 place your banner image in public/banner/
+          alt="Trade With Us Banner"
+          width={1600}
+          height={400}
+          className="w-full object-cover rounded-md"
+          priority
+        />
+      </div>
+      {/* ✅ Top Ticker Bar */}
+      <div className="w-full rounded-md overflow-hidden shadow-md">
+        <iframe
+          src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=1,2,3,5,14,20&border=show&speed=50&click_target=blank&theme=dark&tm-cr=212529&hr-cr=FFFFFF13&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=compact-name&column=ask,bid,spread&lang=en&font=Arial, sans-serif"
+          width="100%"
+          height="85"
+          style={{ border: "unset" }}
+        ></iframe>
+      </div>
+      <div className="h-screen md:h-[80vh] rounded-2xl flex flex-col lg:flex-row gap-6 px-6 py-10 bg-gradient-to-br from-[#0a0f1d] to-[#0f172a] text-white">
+        {/* Left - Account Numbers */}
+        <div className="w-full lg:w-[300px] h-fit bg-[#121a2a] border border-gray-800 rounded-2xl p-6 shadow-lg space-y-4">
+          <h2 className="text-xl font-semibold text-[var(--primary)] mb-2">
+            Live MT5 Accounts
+          </h2>
 
-        {accounts.length === 0 ? (
-          <div className="flex flex-col items-center justify-center  text-center h-fit">
-            <Image
-              src={emptyIcon}
-              alt="No Live Accounts"
-              width={120}
-              height={120}
-              className="mb-4 grayscale opacity-80"
-            />
-            <p className="text-gray-400 text-sm mb-2">No live accounts yet.</p>
-            <Button
-              text="+ Create Account"
-              onClick={() => setShowModal(true)}
-            />
-          </div>
-        ) : (
-          <>
-            {accounts.map((acc) => (
-              <div
-                key={acc._id}
-                onClick={() => {
-                  setSelectedAccount(acc);
-                  fetchAccountSummary(acc.accountNo);
-                }}
-                className={`cursor-pointer px-4 py-3 rounded-md border border-gray-700  transition ${
-                  selectedAccount?.accountNo === acc.accountNo
-                    ? " text-white font-semibold border border-[var(--primary)]"
-                    : "bg-[#0d1b2a] "
-                }`}
-              >
-                MT{acc.accountNo}
-              </div>
-            ))}
-            {accounts.length === 0 && (
+          {accounts.length === 0 ? (
+            <div className="flex flex-col items-center justify-center  text-center h-fit">
+              <Image
+                src={emptyIcon}
+                alt="No Live Accounts"
+                width={120}
+                height={120}
+                className="mb-4 grayscale opacity-80"
+              />
+              <p className="text-gray-400 text-sm mb-2">
+                No live accounts yet.
+              </p>
               <Button
                 text="+ Create Account"
                 onClick={() => setShowModal(true)}
               />
-            )}
-          </>
-        )}
-      </div>
-
-      {/* Right - Summary */}
-      <div className="flex-1 bg-[#121a2a] border border-gray-800 rounded-2xl p-8 shadow-xl space-y-6 h-fit">
-        {selectedAccount && summary ? (
-          <>
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">
-                Account MT{selectedAccount.accountNo}
-              </h2>
-              <span className="bg-[var(--primary)]/20 text-[var(--primary)] px-4 py-1 rounded-full text-sm">
-                {selectedAccount.currency}
-              </span>
             </div>
+          ) : (
+            <>
+              {accounts.map((acc) => (
+                <div
+                  key={acc._id}
+                  onClick={() => {
+                    setSelectedAccount(acc);
+                    fetchAccountSummary(acc.accountNo);
+                  }}
+                  className={`cursor-pointer px-4 py-3 rounded-md border border-gray-700  transition ${
+                    selectedAccount?.accountNo === acc.accountNo
+                      ? " text-white font-semibold border border-[var(--primary)]"
+                      : "bg-[#0d1b2a] "
+                  }`}
+                >
+                  MT{acc.accountNo}
+                </div>
+              ))}
+              {accounts.length === 0 && (
+                <Button
+                  text="+ Create Account"
+                  onClick={() => setShowModal(true)}
+                />
+              )}
+            </>
+          )}
+        </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
-              <div>
-                <p className="text-gray-400">💼 Balance</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.balance}
-                </p>
+        {/* Right - Summary */}
+        <div className="flex-1 bg-[#121a2a] border border-gray-800 rounded-2xl p-8 shadow-xl space-y-6 h-fit">
+          {selectedAccount && summary ? (
+            <>
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold">
+                  Account MT{selectedAccount.accountNo}
+                </h2>
+                <span className="bg-[var(--primary)]/20 text-[var(--primary)] px-4 py-1 rounded-full text-sm">
+                  {selectedAccount.currency}
+                </span>
               </div>
-              <div>
-                <p className="text-gray-400">🏦 Credit</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.Credit}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-400">📉 Floating</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.Floating}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-400">📊 Margin</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.Margin}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-400">💰 Free Margin</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.MarginFree}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-400">📈 Equity</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.Equity}
-                </p>
-              </div>
-              <div className="col-span-2 md:col-span-3">
-                <p className="text-gray-400">💵 DW Balance</p>
-                <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                  ${summary.DWBalance}
-                </p>
-              </div>
-            </div>
 
-            <div className="flex flex-wrap gap-3 pt-4">
-              <button
-                className="bg-blue-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                onClick={() => router.push("/web-trader")}
-              >
-                Trade Now
-              </button>
-              <button
-                className="bg-green-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                onClick={() => {
-                  setBalanceMode("deposit");
-                  setShowAddBalanceModal(true);
-                }}
-              >
-                Deposit
-              </button>
-              <button
-                className="bg-red-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                onClick={() => {
-                  setBalanceMode("withdraw");
-                  setShowAddBalanceModal(true);
-                }}
-              >
-                Withdraw
-              </button>
-              <button
-                className="bg-gray-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                onClick={() => setShowPasswordModal(true)}
-              >
-                Update Password
-              </button>
-            </div>
-          </>
-        ) : (
-          <p className="text-gray-400">
-            Select an account to view its details.
-          </p>
-        )}
-      </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+                <div>
+                  <p className="text-gray-400">💼 Balance</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.balance}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-400">🏦 Credit</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.Credit}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-400">📉 Floating</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.Floating}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-400">📊 Margin</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.Margin}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-400">💰 Free Margin</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.MarginFree}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-400">📈 Equity</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.Equity}
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3">
+                  <p className="text-gray-400">💵 DW Balance</p>
+                  <p className="bg-[#17263e] px-3 py-2 rounded-md">
+                    ${summary.DWBalance}
+                  </p>
+                </div>
+              </div>
 
-      {/* Modal */}
-      <RegisterModal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-          fetchUserData();
-        }}
-      />
-      {selectedAccount && (
-        <UpdatePasswordModal
-          isOpen={showPasswordModal}
-          onClose={() => setShowPasswordModal(false)}
-          accountNo={selectedAccount.accountNo}
+              <div className="flex flex-wrap gap-3 pt-4">
+                <button
+                  className="bg-blue-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                  onClick={() => router.push("/web-trader")}
+                >
+                  Trade Now
+                </button>
+                <button
+                  className="bg-green-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                  onClick={() => {
+                    setBalanceMode("deposit");
+                    setShowAddBalanceModal(true);
+                  }}
+                >
+                  Deposit
+                </button>
+                <button
+                  className="bg-red-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                  onClick={() => {
+                    setBalanceMode("withdraw");
+                    setShowAddBalanceModal(true);
+                  }}
+                >
+                  Withdraw
+                </button>
+                <button
+                  className="bg-gray-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                  onClick={() => setShowPasswordModal(true)}
+                >
+                  Update Password
+                </button>
+              </div>
+            </>
+          ) : (
+            <p className="text-gray-400">
+              Select an account to view its details.
+            </p>
+          )}
+        </div>
+
+        {/* Modal */}
+        <RegisterModal
+          isOpen={showModal}
+          onClose={() => {
+            setShowModal(false);
+            fetchUserData();
+          }}
         />
-      )}
+        {selectedAccount && (
+          <UpdatePasswordModal
+            isOpen={showPasswordModal}
+            onClose={() => setShowPasswordModal(false)}
+            accountNo={selectedAccount.accountNo}
+          />
+        )}
 
-      <AddBalanceModal
-        isOpen={showAddBalanceModal}
-        onClose={() => setShowAddBalanceModal(false)}
-        accountNo={selectedAccount?.accountNo || 0}
-        mode={balanceMode}
-        onSuccess={() => {
-          const accNo = selectedAccount?.accountNo;
-          setShowAddBalanceModal(false); // ✅ Close modal immediately
-          if (accNo) {
-            setTimeout(() => {
-              fetchAccountSummary(accNo); // ✅ Allow time for modal to close before fetching
-              fetchUserData();
-            }, 100);
-          }
-        }}
-      />
+        <AddBalanceModal
+          isOpen={showAddBalanceModal}
+          onClose={() => setShowAddBalanceModal(false)}
+          accountNo={selectedAccount?.accountNo || 0}
+          mode={balanceMode}
+          onSuccess={() => {
+            const accNo = selectedAccount?.accountNo;
+            setShowAddBalanceModal(false); // ✅ Close modal immediately
+            if (accNo) {
+              setTimeout(() => {
+                fetchAccountSummary(accNo); // ✅ Allow time for modal to close before fetching
+                fetchUserData();
+              }, 100);
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }
