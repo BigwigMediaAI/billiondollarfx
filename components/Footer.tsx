@@ -35,7 +35,7 @@ const navLinks = [
 export default function Footer() {
   return (
     <footer className="bg-[#0A1A25] text-white text-sm font-montserrat px-6 py-10 md:px-16 lg:px-24">
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-center gap-10">
         {/* Logo and intro */}
         <div>
           <Image
@@ -59,7 +59,7 @@ export default function Footer() {
               <li key={label}>
                 <Link
                   href={href}
-                  className="hover:text-white cursor-pointer transition-colors"
+                  className="hover:text-white cursor-pointer transition-colors text-center"
                 >
                   {label}
                 </Link>
