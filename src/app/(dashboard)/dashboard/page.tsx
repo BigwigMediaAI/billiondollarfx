@@ -8,6 +8,7 @@ import Button from "../../../../components/Button";
 import RegisterModal from "../../../../components/CreateAccount"; // adjust path as needed
 import axios from "axios";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
+import Link from "next/link";
 
 interface Account {
   _id: string;
@@ -194,10 +195,10 @@ export default function DepositsPage() {
               <div className="text-white font-bold">${balance}</div>
             </div>
             <div className="flex justify-center">
-              <Button
-                text="Make a Deposit"
-                onClick={() => setShowDepositModal(true)}
-              />
+              <Link href="/deposits">
+                {" "}
+                <Button text="Make a Deposit" />{" "}
+              </Link>
             </div>
 
             {/* <div className="bg-[#0d1b2a] p-4 rounded-xl flex justify-between items-center">

@@ -11,6 +11,7 @@ import UpdatePasswordModal from "../../../../components/UpdatePasswordModal";
 import { useRouter } from "next/navigation";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
 import bannerImage from "../../../../assets/grgrgr 1.jpg";
+import Link from "next/link";
 
 interface Account {
   _id: string;
@@ -244,15 +245,17 @@ export default function LiveAccounts() {
                 >
                   Trade Now
                 </button>
-                <button
-                  className="bg-green-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                  onClick={() => {
-                    setBalanceMode("deposit");
-                    setShowAddBalanceModal(true);
-                  }}
-                >
-                  Deposit
-                </button>
+                <Link href="/deposits">
+                  <button
+                    className="bg-green-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                    // onClick={() => {
+                    //   setBalanceMode("deposit");
+                    //   setShowAddBalanceModal(true);
+                    // }}
+                  >
+                    Deposit
+                  </button>
+                </Link>
                 <button
                   className="bg-red-600 px-4 py-2 rounded-md text-sm cursor-pointer"
                   onClick={() => {
