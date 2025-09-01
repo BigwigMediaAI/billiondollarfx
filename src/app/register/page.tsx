@@ -3,10 +3,146 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import Logo from "../../../assets/logo.webp";
+import Logo from "../../../assets/BDFX Logo Animition.gif";
 import Button from "../../../components/Button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+const countries = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Belarus",
+  "Belgium",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Chile",
+  "China",
+  "Colombia",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Dominican Republic",
+  "Ecuador",
+  "Egypt",
+  "Estonia",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Guatemala",
+  "Honduras",
+  "Hong Kong",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lithuania",
+  "Luxembourg",
+  "Macau",
+  "Madagascar",
+  "Malaysia",
+  "Maldives",
+  "Malta",
+  "Mauritius",
+  "Mexico",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Myanmar",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nigeria",
+  "North",
+  "Korea",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Panama",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Saudi Arabia",
+  "Serbia",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "South Africa",
+  "South Korea",
+  "Spain",
+  "Sri Lanka",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "UAE",
+  "Uganda",
+  "Ukraine",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vatican City",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+];
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -60,6 +196,7 @@ export default function SignUpPage() {
 
     try {
       setLoading(true);
+      console.log(formData);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/register`,
         {
@@ -70,6 +207,7 @@ export default function SignUpPage() {
       );
 
       const data = await res.json();
+      console.log(data);
       if (!res.ok) return alert(data.message || "Something went wrong.");
 
       alert("OTP sent to email and WhatsApp.");
@@ -133,8 +271,7 @@ export default function SignUpPage() {
             <Image
               src={Logo}
               alt="WinproFX Logo"
-              width={100}
-              height={40}
+              width={400}
               className="mb-4"
             />
           </Link>
@@ -179,6 +316,7 @@ export default function SignUpPage() {
               onChange={handleChange}
               required
             />
+
             <select
               name="nationality"
               className="input"
@@ -187,8 +325,11 @@ export default function SignUpPage() {
               required
             >
               <option value="">Select Country*</option>
-              <option>India</option>
-              <option>USA</option>
+              {countries.map((country) => (
+                <option key={country} value={country}>
+                  {country}
+                </option>
+              ))}
             </select>
             <input
               name="state"
