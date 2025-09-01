@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "../../../components/Button";
-import Logo from "../../../assets/logo.webp";
+import Logo from "../../../assets/BDFX Logo Animition.gif";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -139,7 +139,7 @@ export default function LoginPage() {
             <Image
               src={Logo}
               alt="WinproFX"
-              width={100}
+              width={200}
               height={40}
               className="mx-auto mb-2"
             />
@@ -227,7 +227,7 @@ export default function LoginPage() {
               }
               onClick={handleSignIn}
               disabled={loading}
-              className={`w-full bg-gradient-to-r from-cyan-600 to-blue-500 text-white py-2 rounded-full ${
+              className={`w-full bg-[var(--primary)] text-white py-2 rounded-full ${
                 loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
               }`}
             />
