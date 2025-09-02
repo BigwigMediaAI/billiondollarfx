@@ -2,32 +2,80 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 interface User {
   _id: string;
   fullName: string;
-
+  gender: string;
   email: string;
   phone: string;
   nationality: string;
+  state?: string;
+  city?: string;
+  address?: string;
+  accountType?: string;
+  isKycVerified?: boolean;
+  profileImage?: string;
+
+  //Bank
+  accountHolderName: string;
+  accountNumber: string;
+  ifscCode?: string;
+  iban?: string;
+  bankName: string;
+  bankAddress: string;
+
+  // Documents
+  identityFront?: string;
+  identityBack?: string;
+  addressProof?: string;
+  selfieProof?: string;
 }
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [verifying, setVerifying] = useState(false);
+
+  // ✅ For document preview modal
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/users`)
       .then((res) => {
         setUsers(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.error("Failed to fetch users:", err);
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const handleVerifyKyc = async (email: string) => {
+    try {
+      setVerifying(true);
+      await axios.put(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/${email}/verify-kyc`,
+        { status: true }
+      );
+
+      setUsers((prev) =>
+        prev.map((u) => (u.email === email ? { ...u, isKycVerified: true } : u))
+      );
+
+      alert("✅ User KYC Verified");
+      setSelectedUser(null);
+    } catch (err) {
+      console.error("Failed to verify KYC:", err);
+      alert("❌ Failed to verify KYC");
+    } finally {
+      setVerifying(false);
+    }
+  };
 
   return (
     <div className="min-h-screen text-white">
@@ -48,12 +96,14 @@ export default function UsersPage() {
                 <th className="px-4 py-3">Email</th>
                 <th className="px-4 py-3">Phone</th>
                 <th className="px-4 py-3">Nationality</th>
+                <th className="px-4 py-3">KYC</th>
+                <th className="px-4 py-3">Action</th>
               </tr>
             </thead>
             <tbody>
               {users.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="text-center py-6 text-gray-400">
+                  <td colSpan={6} className="text-center py-6 text-gray-400">
                     No users found.
                   </td>
                 </tr>
@@ -67,11 +117,188 @@ export default function UsersPage() {
                     <td className="px-4 py-3">{user.email}</td>
                     <td className="px-4 py-3">{user.phone}</td>
                     <td className="px-4 py-3">{user.nationality || "N/A"}</td>
+                    <td className="px-4 py-3">
+                      {user.isKycVerified ? (
+                        <span className="text-green-400 font-medium">
+                          Verified
+                        </span>
+                      ) : (
+                        <span className="text-yellow-400 font-medium">
+                          Pending
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      <button
+                        onClick={() => setSelectedUser(user)}
+                        className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm"
+                      >
+                        View
+                      </button>
+                    </td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* ✅ User Details Modal */}
+      {selectedUser && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-[#1f2937] rounded-lg p-6 w-11/12 md:w-2/3 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
+              {selectedUser.profileImage && (
+                <img
+                  src={selectedUser.profileImage}
+                  alt={selectedUser.fullName}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              )}
+              {selectedUser.fullName}
+            </h2>
+
+            {/* Two-column layout: user + bank info */}
+            <div className="flex justify-between gap-10 mb-10">
+              {/* Left: User Info */}
+              <div className="space-y-2 text-sm text-gray-300 w-1/2">
+                <p>
+                  <b>Email:</b> {selectedUser.email}
+                </p>
+                <p>
+                  <b>Phone:</b> {selectedUser.phone}
+                </p>
+                <p>
+                  <b>Gender:</b> {selectedUser.gender}
+                </p>
+                <p>
+                  <b>Nationality:</b> {selectedUser.nationality}
+                </p>
+                <p>
+                  <b>State:</b> {selectedUser.state}
+                </p>
+                <p>
+                  <b>City:</b> {selectedUser.city}
+                </p>
+                <p>
+                  <b>Address:</b> {selectedUser.address}
+                </p>
+                <p>
+                  <b>Account Type:</b> {selectedUser.accountType}
+                </p>
+              </div>
+
+              {/* Right: Bank Info */}
+              <div className="space-y-2 text-sm text-gray-300 w-1/2">
+                <p>
+                  <b>Account Holder:</b> {selectedUser.accountHolderName}
+                </p>
+                <p>
+                  <b>Account Number:</b> {selectedUser.accountNumber}
+                </p>
+                {selectedUser.ifscCode && (
+                  <p>
+                    <b>IFSC:</b> {selectedUser.ifscCode}
+                  </p>
+                )}
+                {selectedUser.iban && (
+                  <p>
+                    <b>IBAN:</b> {selectedUser.iban}
+                  </p>
+                )}
+                <p>
+                  <b>Bank Name:</b> {selectedUser.bankName}
+                </p>
+                <p>
+                  <b>Bank Address:</b> {selectedUser.bankAddress}
+                </p>
+              </div>
+            </div>
+
+            <p>
+              <b>KYC Status:</b>{" "}
+              {selectedUser.isKycVerified ? (
+                <span className="text-green-400">Verified</span>
+              ) : (
+                <span className="text-yellow-400">Pending</span>
+              )}
+            </p>
+
+            {/* Documents */}
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Documents</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {selectedUser.identityFront && (
+                  <div>
+                    <p className="mb-1 text-sm">ID Card (Front)</p>
+                    <Zoom>
+                      <img
+                        src={selectedUser.identityFront}
+                        alt="Identity Front"
+                        className="rounded border border-gray-600 cursor-pointer hover:scale-105 transition"
+                      />
+                    </Zoom>
+                  </div>
+                )}
+                {selectedUser.identityBack && (
+                  <div>
+                    <p className="mb-1 text-sm">ID Card (Back)</p>
+                    <Zoom>
+                      <img
+                        src={selectedUser.identityBack}
+                        alt="Identity Back"
+                        className="rounded border border-gray-600 cursor-pointer hover:scale-105 transition"
+                      />
+                    </Zoom>
+                  </div>
+                )}
+                {selectedUser.addressProof && (
+                  <div>
+                    <p className="mb-1 text-sm">Address Proof</p>
+                    <Zoom>
+                      <img
+                        src={selectedUser.addressProof}
+                        alt="Address Proof"
+                        className="rounded border border-gray-600 cursor-pointer hover:scale-105 transition"
+                      />
+                    </Zoom>
+                  </div>
+                )}
+                {selectedUser.selfieProof && (
+                  <div>
+                    <p className="mb-1 text-sm">Selfie Proof</p>
+                    <Zoom>
+                      <img
+                        src={selectedUser.selfieProof}
+                        alt="Selfie Proof"
+                        className="rounded border border-gray-600 cursor-pointer hover:scale-105 transition"
+                      />
+                    </Zoom>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex justify-end gap-3 mt-6">
+              <button
+                onClick={() => setSelectedUser(null)}
+                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded"
+              >
+                Close
+              </button>
+              {!selectedUser.isKycVerified && (
+                <button
+                  onClick={() => handleVerifyKyc(selectedUser.email)}
+                  disabled={verifying}
+                  className="px-4 py-2 bg-[var(--primary)] hover:bg-[#f3d089] rounded"
+                >
+                  {verifying ? "Verifying..." : "Verify KYC"}
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
