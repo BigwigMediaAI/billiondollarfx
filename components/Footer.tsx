@@ -36,7 +36,7 @@ const footerLinks = [
   { label: "Terms & Conditions", path: "/Terms&Conditions" },
   { label: "AML Policy", path: "/aml-policy" },
   { label: "Deposit & Withdrawal Policy", path: "/Deposit&Withdrawal" },
-  { label: "Restricted Countries", path: "/restricted-countries" },
+  { label: "Restricted Countries", path: "/Restricted-Countries" },
   { label: "Risk Disclosure", path: "/risk-disclosure" },
   { label: "Client Services Agreement", path: "/client-services-agreement" },
 ];
@@ -102,7 +102,7 @@ export default function Footer() {
               <FaWhatsapp className="text-green-400" /> whatsapp
             </li>
             <li className="flex items-center gap-2">
-              <FaEnvelope className="text-blue-400" /> support@abc.com
+              <FaEnvelope className="text-blue-400" /> info@billiondollarfx.com
             </li>
             <li className="flex items-center gap-2">
               <FaPhoneAlt className="text-cyan-400" /> +971 509818742
