@@ -385,17 +385,23 @@ export default function SignUpPage() {
               />
               <label>
                 I agree to the WinproFX{" "}
-                <span className="text-[var(--primary)] underline">
-                  Privacy Policy
-                </span>
+                <Link href="/Privacy-Policy">
+                  <span className="text-[var(--primary)] underline cursor-pointer">
+                    Privacy Policy
+                  </span>
+                </Link>
                 ,{" "}
-                <span className="text-[var(--primary)] underline">
-                  Terms and Conditions
-                </span>
+                <Link href="/Terms&Conditions">
+                  <span className="text-[var(--primary)] underline cursor-pointer">
+                    Terms and Conditions
+                  </span>
+                </Link>
                 , and{" "}
-                <span className="text-[var(--primary)] underline">
-                  Risk Disclosure
-                </span>
+                <Link href="/risk-disclosure">
+                  <span className="text-[var(--primary)] underline cursor-pointer">
+                    Risk Disclosure
+                  </span>
+                </Link>
                 .
               </label>
             </div>

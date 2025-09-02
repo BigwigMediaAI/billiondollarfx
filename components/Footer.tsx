@@ -31,6 +31,15 @@ const navLinks = [
   { label: "Join Our Team", href: "/career" },
   { label: "Contact Us", href: "/contact" },
 ];
+const footerLinks = [
+  { label: "Privacy Policy", path: "/Privacy-Policy" },
+  { label: "Terms & Conditions", path: "/Terms&Conditions" },
+  { label: "AML Policy", path: "/aml-policy" },
+  { label: "Deposit & Withdrawal Policy", path: "/Deposit&Withdrawal" },
+  { label: "Restricted Countries", path: "/restricted-countries" },
+  { label: "Risk Disclosure", path: "/risk-disclosure" },
+  { label: "Client Services Agreement", path: "/client-services-agreement" },
+];
 
 export default function Footer() {
   return (
@@ -169,18 +178,14 @@ export default function Footer() {
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-400 text-xs flex flex-col md:flex-row md:justify-between items-center gap-2">
         <p>© 2025 All Rights Reserved By Billion Dollar FX</p>
         <div className="flex flex-wrap justify-center gap-4">
-          {[
-            "Privacy Policy",
-            "Terms & Conditions",
-            "AML Policy",
-            "Deposit & withdrawal Policy",
-            "Restricted Countries",
-            "Risk Disclosure",
-            "Client Services Agreement",
-          ].map((item, idx) => (
-            <span key={idx} className="hover:text-white cursor-pointer">
-              {item}
-            </span>
+          {footerLinks.map((item, idx) => (
+            <Link
+              key={idx}
+              href={item.path}
+              className="hover:text-white cursor-pointer"
+            >
+              {item.label}
+            </Link>
           ))}
         </div>
       </div>
