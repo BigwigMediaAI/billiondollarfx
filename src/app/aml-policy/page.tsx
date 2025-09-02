@@ -34,13 +34,13 @@ export default function AMLPolicy() {
           <p className="text-gray-300 leading-relaxed">
             In the fight against terrorism funding (ATF) and money laundering
             (AML), BillionDollarFX is dedicated to the highest standards. This
-            policy's objective is to aggressively prevent and reduce the dangers
-            associated with certain behaviors. All financial institutions are
-            required by law to collect, confirm, and keep records of information
-            identifying each individual or organization that opens an account.
-            BillionDollarFX is required to notify the appropriate authorities of
-            any suspected behavior pertaining to money laundering or the funding
-            of terrorism.
+            policy&#39;s objective is to aggressively prevent and reduce the
+            dangers associated with certain behaviors. All financial
+            institutions are required by law to collect, confirm, and keep
+            records of information identifying each individual or organization
+            that opens an account. BillionDollarFX is required to notify the
+            appropriate authorities of any suspected behavior pertaining to
+            money laundering or the funding of terrorism.
           </p>
         </div>
 
@@ -58,11 +58,11 @@ export default function AMLPolicy() {
           <ul className="list-disc list-inside text-gray-300 space-y-2 pl-2">
             <li>
               <strong className="text-white">Placement:</strong> First, money is
-              put into the customer's account. Withdrawals can only be made to
-              another account in the client's name or to the same bank account
-              that made the deposit. Usually taking two to seven business days,
-              withdrawal timings vary based on the currency, bank location, and
-              internal banking processes.
+              put into the customer&#39;s account. Withdrawals can only be made
+              to another account in the client&#39;s name or to the same bank
+              account that made the deposit. Usually taking two to seven
+              business days, withdrawal timings vary based on the currency, bank
+              location, and internal banking processes.
             </li>
             <li>
               <strong className="text-white">Layering:</strong> To hide the
@@ -135,9 +135,9 @@ export default function AMLPolicy() {
           <p className="text-gray-300 leading-relaxed">
             In addition to gathering KYC data, BillionDollarFX keeps an eye on
             customer transactions to spot questionable activities. Transactions
-            that don't fit the client's known profile or line of work are marked
-            for examination. To stop abuse, the platform employs both automatic
-            processes and human verification where needed.
+            that don&#39;t fit the client&#39;s known profile or line of work
+            are marked for examination. To stop abuse, the platform employs both
+            automatic processes and human verification where needed.
           </p>
         </div>
 

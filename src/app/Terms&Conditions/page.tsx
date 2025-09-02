@@ -33,9 +33,9 @@ export default function TermsConditions() {
           </h2>
           <p className="text-gray-300 leading-relaxed">
             1.1 You accept and agree to abide by the terms stated in this
-            Trading Platform Agreement by using any of BillionDollarFX's goods
-            or services. Please do not use BillionDollarFX's services or
-            products if you disagree with these terms.
+            Trading Platform Agreement by using any of BillionDollarFX&#39;s
+            goods or services. Please do not use BillionDollarFX&#39;s services
+            or products if you disagree with these terms.
           </p>
           <p className="text-gray-300 leading-relaxed">
             1.2 This agreement is applicable to all BillionDollarFX users,

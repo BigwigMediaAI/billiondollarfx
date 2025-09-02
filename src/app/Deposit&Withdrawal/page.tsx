@@ -37,16 +37,17 @@ export default function DepositWithdrawalPolicy() {
             You must use a bank account that is registered in your name and is
             the same name as your BillionDollarFX trading account in order to
             make deposits via bank transfer. You might have to provide a wire
-            transfer receipt or SWIFT confirmation proving the monies' origin
-            upon request. If this isn't provided, the deposit might be refunded.
+            transfer receipt or SWIFT confirmation proving the monies&#39;
+            origin upon request. If this isn&#39;t provided, the deposit might
+            be refunded.
           </p>
 
           <h3 className="text-lg font-semibold text-white">Withdrawals</h3>
           <p className="text-gray-300 leading-relaxed">
             The same bank account that is used for deposits or another account
-            in the client's name must be used for withdrawals. Processing
+            in the client&#39;s name must be used for withdrawals. Processing
             periods, which normally range from two to seven business days,
-            depend on the bank's location, currency, and internal policies.
+            depend on the bank&#39;s location, currency, and internal policies.
           </p>
         </div>
 
@@ -66,9 +67,9 @@ export default function DepositWithdrawalPolicy() {
           <p className="text-gray-300 leading-relaxed">
             The same card that was used to make the deposit will be credited
             with the withdrawal. Withdrawals to another card cannot be processed
-            by BillionDollarFX. It's possible that you'll be requested to submit
-            scanned copies of your card that only display the first and last
-            four numbers while hiding the CVV code. Additional proof of
+            by BillionDollarFX. It&#39;s possible that you&#39;ll be requested
+            to submit scanned copies of your card that only display the first
+            and last four numbers while hiding the CVV code. Additional proof of
             ownership may be needed for cards lacking a cardholder name.
           </p>
           <p className="text-gray-300 leading-relaxed">
@@ -128,7 +129,7 @@ export default function DepositWithdrawalPolicy() {
             </li>
             <li>
               Withdrawal restrictions and fees are subject to change at
-              BillionDollarFX's discretion. Positions must be ended before
+              BillionDollarFX&#39;s discretion. Positions must be ended before
               profits can be taken out; withdrawals from open trading positions
               are prohibited.
             </li>
@@ -138,7 +139,7 @@ export default function DepositWithdrawalPolicy() {
               original deposit source.
             </li>
             <li>
-              The original deposit's currency is used to handle withdrawals.
+              The original deposit&#39;s currency is used to handle withdrawals.
               BillionDollarFX will convert the amount at the going rates if one
               is necessary.
             </li>
@@ -172,8 +173,8 @@ export default function DepositWithdrawalPolicy() {
             6. Handling Issues
           </h2>
           <p className="text-gray-300 leading-relaxed">
-            BillionDollarFX's Complaint Handling Policy, which is accessible on
-            our website, will be followed in the resolution of any issues
+            BillionDollarFX&#39;s Complaint Handling Policy, which is accessible
+            on our website, will be followed in the resolution of any issues
             pertaining to deposit or withdrawal terms. Written complaints should
             be sent to{" "}
             <span className="text-[var(--primary)] font-semibold">
@@ -185,7 +186,7 @@ export default function DepositWithdrawalPolicy() {
             This policy may occasionally be revised to comply with legal
             mandates and anti-money laundering guidelines. The Terms and
             Conditions, as modified at our discretion, govern the usage of
-            BillionDollarFX's services.
+            BillionDollarFX&#39;s services.
           </p>
         </div>
       </section>

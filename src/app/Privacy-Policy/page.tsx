@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
             either electronically or physically, by us and our group companies.
             It is your responsibility to maintain the privacy of your account
             information. Only authorized individuals can access your data, which
-            is securely stored. Although online data transfers aren't always
+            is securely stored. Although online data transfers aren&#39;t always
             completely safe, BillionDollarFX has implemented strong security
             measures to guard against unwanted access to your personal
             information.
@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
             <li>Data for authentication (such as a signature)</li>
             <li>Location information</li>
             <li>
-              Verification documents such a driver's license, ID card, or
+              Verification documents such a driver&#39;s license, ID card, or
               passport
             </li>
           </ul>
