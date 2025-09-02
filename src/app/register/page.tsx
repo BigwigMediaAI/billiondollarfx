@@ -407,7 +407,7 @@ export default function SignUpPage() {
             </div>
             <button
               type="submit"
-              className="md:col-span-2 bg-[var(--primary)] hover:bg-[#f3d089] text-black font-semibold py-2 rounded-full"
+              className="md:col-span-2 bg-[var(--primary)] hover:bg-[#f3d089] text-white font-semibold py-2 rounded-full"
             >
               {loading ? "Processing..." : "SIGN UP"}
             </button>
@@ -418,7 +418,10 @@ export default function SignUpPage() {
             />
           </form>
         ) : (
-          <form onSubmit={handleOtpSubmit} className="grid grid-cols-1 gap-4">
+          <form
+            onSubmit={handleOtpSubmit}
+            className="grid grid-cols-1 gap-4 max-w-lg mx-auto"
+          >
             <p className="text-white text-sm mb-2">
               Enter the OTP sent to your email/phone
             </p>
@@ -427,15 +430,17 @@ export default function SignUpPage() {
               placeholder="Enter OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="input"
+              className="input mb-5"
               required
             />
-            <button
-              type="submit"
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-full"
-            >
-              {loading ? "Verifying..." : "VERIFY OTP"}
-            </button>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-[var(--primary)] hover:bg-[#f3d089] text-white font-semibold py-2 px-4 rounded-full w-fit"
+              >
+                {loading ? "Verifying..." : "VERIFY OTP"}
+              </button>
+            </div>
           </form>
         )}
       </div>
