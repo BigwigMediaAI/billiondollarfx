@@ -37,7 +37,7 @@ const footerLinks = [
   { label: "AML Policy", path: "/aml-policy" },
   { label: "Deposit & Withdrawal Policy", path: "/Deposit&Withdrawal" },
   { label: "Restricted Countries", path: "/Restricted-Countries" },
-  { label: "Risk Disclosure", path: "/risk-disclosure" },
+  { label: "Risk Disclosure", path: "/risk-discloser" },
   { label: "Client Services Agreement", path: "/client-services-agreement" },
 ];
 
