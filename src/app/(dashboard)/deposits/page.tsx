@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { CreditCard, X } from "lucide-react";
 import Button from "../../../../components/Button"; // ✅ import your Button
+import KycAlertModal from "../../../../components/KycAlertModal";
 
 interface Account {
   _id: string;
@@ -18,6 +19,8 @@ function Deposit() {
     accountno: "",
     amount: "",
   });
+  const [showKycPopup, setShowKycPopup] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
 
   // ✅ Fetch accounts from backend
   const fetchAccounts = async () => {
@@ -33,6 +36,7 @@ function Deposit() {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`
       );
+      if (res.data) setUserData(res.data);
 
       if (res.data?.accounts?.length > 0) {
         setAccounts(res.data.accounts);
@@ -112,7 +116,13 @@ function Deposit() {
           {/* ✅ Use Button instead of <button> */}
           <Button
             text="Deposit"
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              if (userData?.isKycVerified === false) {
+                setShowKycPopup(true); // show KYC popup
+              } else {
+                setShowModal(true); // open deposit modal
+              }
+            }}
             className="w-fit"
           />
         </div>
@@ -180,6 +190,10 @@ function Deposit() {
           </div>
         )}
       </div>
+      <KycAlertModal
+        isOpen={showKycPopup}
+        onClose={() => setShowKycPopup(false)}
+      />
     </div>
   );
 }

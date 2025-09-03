@@ -9,6 +9,7 @@ import RegisterModal from "../../../../components/CreateAccount"; // adjust path
 import axios from "axios";
 import AddBalanceModal from "../../../../components/AddBalanceModal";
 import Link from "next/link";
+import KycAlertModal from "../../../../components/KycAlertModal";
 
 interface Account {
   _id: string;
@@ -26,6 +27,8 @@ export default function DepositsPage() {
   const [balance, setBalance] = useState<string>("0.00");
   const [DWBalance, setDWBalance] = useState<string>("0.00");
   const [showDepositModal, setShowDepositModal] = useState(false);
+  const [showKycPopup, setShowKycPopup] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
 
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
@@ -41,6 +44,7 @@ export default function DepositsPage() {
         `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`
       );
       const userData = res.data;
+      setUserData(userData);
       if (
         userData &&
         Array.isArray(userData.accounts) &&
@@ -55,6 +59,9 @@ export default function DepositsPage() {
       }
 
       setIsLoggedIn(true);
+      if (!userData.isKycVerified) {
+        setTimeout(() => setShowKycPopup(true), 5000);
+      }
     } catch (err) {
       console.error("Error fetching user data:", err);
       setAccounts([]);
@@ -229,6 +236,11 @@ export default function DepositsPage() {
               fetchAccountSummary(Number(accountNo)); // ✅ refresh balance after short delay
             }, 100);
           }}
+        />
+
+        <KycAlertModal
+          isOpen={showKycPopup}
+          onClose={() => setShowKycPopup(false)}
         />
       </div>
     </div>
