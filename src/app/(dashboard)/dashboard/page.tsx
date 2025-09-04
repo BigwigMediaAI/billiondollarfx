@@ -92,8 +92,14 @@ export default function DepositsPage() {
       if (result.data?.response === "success") {
         const accountData = result.data;
 
-        setBalance(accountData.balance);
-        setDWBalance(accountData.DWBalance);
+        // ✅ Convert ₹ → $
+        const convertToUSD = (value: string) => {
+          const num = parseFloat(value) || 0;
+          return (num / 88.12).toFixed(2); // keep 2 decimals
+        };
+
+        setBalance(convertToUSD(accountData.balance));
+        setDWBalance(convertToUSD(accountData.DWBalance));
       } else {
         console.warn(
           "Account summary fetch failed:",
@@ -204,7 +210,7 @@ export default function DepositsPage() {
           <div className="space-y-5">
             <div className="bg-[#0d1b2a] p-4 rounded-xl flex justify-between items-center">
               <div className="text-gray-400 text-sm">Total Deposited</div>
-              <div className="text-white font-bold">₹{balance}</div>
+              <div className="text-white font-bold">${balance}</div>
             </div>
             <div className="flex justify-center">
               <Link href="/deposits">

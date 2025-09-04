@@ -69,6 +69,15 @@ function Deposit() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const amount = Number(form.amount);
+
+    // ✅ Validate minimum 880
+    if (amount < 880) {
+      alert("The minimum deposit amount should be ₹880.");
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -76,7 +85,7 @@ function Deposit() {
         `${process.env.NEXT_PUBLIC_API_BASE}/api/payment/ramee/deposit`,
         {
           accountNo: form.accountNo,
-          amount: Number(form.amount),
+          amount,
         }
       );
       console.log(res.data);
@@ -172,18 +181,31 @@ function Deposit() {
                 </div>
 
                 {/* Amount */}
+                {/* Amount */}
                 <div>
                   <label className="block text-sm text-gray-300 mb-1">
                     Amount
                   </label>
-                  <input
-                    type="number"
-                    name="amount"
-                    value={form.amount}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
-                  />
+                  <div className="relative">
+                    {/* ₹ Symbol */}
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                      ₹
+                    </span>
+                    <input
+                      type="number"
+                      name="amount"
+                      value={form.amount}
+                      onChange={handleChange}
+                      required
+                      min={880} // ✅ minimum value enforced
+                      placeholder="880"
+                      className="w-full pl-7 pr-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    />
+                  </div>
+                  {/* Note under input */}
+                  <p className="text-xs text-gray-400 mt-1">
+                    Minimum deposit amount is ₹880.
+                  </p>
                 </div>
 
                 {/* ✅ Use Button instead of <button> */}
