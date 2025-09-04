@@ -15,7 +15,12 @@ interface Account {
   _id: string;
   accountNo: number;
   currency: string;
-  // add more fields if needed
+}
+
+interface User {
+  email: string;
+  isKycVerified: boolean;
+  accounts: Account[];
 }
 
 export default function DepositsPage() {
@@ -28,7 +33,7 @@ export default function DepositsPage() {
   const [DWBalance, setDWBalance] = useState<string>("0.00");
   const [showDepositModal, setShowDepositModal] = useState(false);
   const [showKycPopup, setShowKycPopup] = useState(false);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<User | null>(null);
 
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
