@@ -83,14 +83,21 @@ export default function LiveAccounts() {
 
       if (res.data?.data?.response === "success") {
         const data = res.data.data;
+
+        // ✅ Convert ₹ to $
+        const convertToUSD = (value: string) => {
+          const num = parseFloat(value) || 0;
+          return (num / 88.12).toFixed(2); // keep 2 decimals
+        };
+
         setSummary({
-          balance: data.balance || "0",
-          Credit: data.Credit || "0",
-          Floating: data.Floating || "0",
-          Margin: data.Margin || "0",
-          MarginFree: data.MarginFree || "0",
-          Equity: data.Equity || "0",
-          DWBalance: data.DWBalance || "0",
+          balance: convertToUSD(data.balance),
+          Credit: convertToUSD(data.Credit),
+          Floating: convertToUSD(data.Floating),
+          Margin: convertToUSD(data.Margin),
+          MarginFree: convertToUSD(data.MarginFree),
+          Equity: convertToUSD(data.Equity),
+          DWBalance: convertToUSD(data.DWBalance),
         });
       } else {
         setSummary(null);
@@ -197,43 +204,43 @@ export default function LiveAccounts() {
                 <div>
                   <p className="text-gray-400">💼 Balance</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.balance}
+                    ${summary.balance}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-400">🏦 Credit</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.Credit}
+                    ${summary.Credit}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-400">📉 Floating</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.Floating}
+                    ${summary.Floating}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-400">📊 Margin</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.Margin}
+                    ${summary.Margin}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-400">💰 Free Margin</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.MarginFree}
+                    ${summary.MarginFree}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-400">📈 Equity</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.Equity}
+                    ${summary.Equity}
                   </p>
                 </div>
                 <div className="col-span-2 md:col-span-3">
                   <p className="text-gray-400">💵 DW Balance</p>
                   <p className="bg-[#17263e] px-3 py-2 rounded-md">
-                    ₹{summary.DWBalance}
+                    ${summary.DWBalance}
                   </p>
                 </div>
               </div>
