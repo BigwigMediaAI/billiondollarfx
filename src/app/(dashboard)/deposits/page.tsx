@@ -16,7 +16,7 @@ function Deposit() {
   const [showModal, setShowModal] = useState(false);
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [form, setForm] = useState({
-    accountno: "",
+    accountNo: "",
     amount: "",
   });
   const [showKycPopup, setShowKycPopup] = useState(false);
@@ -43,7 +43,7 @@ function Deposit() {
         // Auto-select first account
         setForm((prev) => ({
           ...prev,
-          accountno: res.data.accounts[0].accountNo.toString(),
+          accountNo: res.data.accounts[0].accountNo.toString(),
         }));
       }
     } catch (err) {
@@ -67,15 +67,16 @@ function Deposit() {
       setLoading(true);
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/payment/deposit`,
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/payment/ramee/deposit`,
         {
+          accountNo: form.accountNo,
           amount: Number(form.amount),
-          merchant_user_id: form.accountno, // ✅ selected account
         }
       );
+      console.log(res.data);
 
-      if (res.data?.payment_url) {
-        window.location.href = res.data.payment_url;
+      if (res.data?.decrypted?.url) {
+        window.location.href = res.data.decrypted.url;
       } else {
         alert("Deposit request sent!");
       }
@@ -103,14 +104,14 @@ function Deposit() {
       <div className="h-screen md:h-[80vh] bg-gradient-to-br from-[#0a0f1d] to-[#0f172a] px-6 md:px-12 py-10 text-white">
         <h1 className="text-2xl font-bold mb-8">Payment Methods</h1>
 
-        {/* DigiPay Box */}
+        {/* RameePay Box */}
         <div className="max-w-md border border-gray-700 bg-[#111827] rounded-2xl shadow-lg p-6 flex flex-col space-y-4">
           <div className="flex justify-between items-center">
             <CreditCard size={40} className="text-[var(--primary-color)]" />
-            <h2 className="text-xl font-semibold">DigiPay</h2>
+            <h2 className="text-xl font-semibold">RaamiPay</h2>
           </div>
           <p className="text-gray-300 text-sm">
-            Secure and fast deposit using DigiPay. Click below to proceed.
+            Secure and fast deposit using RaamiPay. Click below to proceed.
           </p>
 
           {/* ✅ Use Button instead of <button> */}
@@ -138,7 +139,7 @@ function Deposit() {
                 <X size={20} />
               </button>
 
-              <h2 className="text-xl font-bold mb-4">Deposit with DigiPay</h2>
+              <h2 className="text-xl font-bold mb-4">Deposit with RaamiPay</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Dropdown for Accounts */}
                 <div>
@@ -146,8 +147,8 @@ function Deposit() {
                     Select Account
                   </label>
                   <select
-                    name="accountno"
-                    value={form.accountno}
+                    name="accountNo"
+                    value={form.accountNo}
                     onChange={handleChange}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600"
