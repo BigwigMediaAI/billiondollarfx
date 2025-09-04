@@ -11,16 +11,22 @@ interface Account {
   currency: string;
 }
 
+interface User {
+  email: string;
+  isKycVerified: boolean;
+  accounts: Account[];
+}
+
 function Deposit() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [accounts, setAccounts] = useState<Account[]>([]);
   const [form, setForm] = useState({
     accountNo: "",
     amount: "",
   });
   const [showKycPopup, setShowKycPopup] = useState(false);
-  const [userData, setUserData] = useState<any>(null);
+  const [accounts, setAccounts] = useState<Account[]>([]);
+  const [userData, setUserData] = useState<User | null>(null);
 
   // ✅ Fetch accounts from backend
   const fetchAccounts = async () => {
