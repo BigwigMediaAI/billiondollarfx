@@ -83,21 +83,14 @@ export default function LiveAccounts() {
 
       if (res.data?.data?.response === "success") {
         const data = res.data.data;
-
-        // ✅ Convert ₹ to $
-        const convertToUSD = (value: string) => {
-          const num = parseFloat(value) || 0;
-          return (num / 88.12).toFixed(2); // keep 2 decimals
-        };
-
         setSummary({
-          balance: convertToUSD(data.balance),
-          Credit: convertToUSD(data.Credit),
-          Floating: convertToUSD(data.Floating),
-          Margin: convertToUSD(data.Margin),
-          MarginFree: convertToUSD(data.MarginFree),
-          Equity: convertToUSD(data.Equity),
-          DWBalance: convertToUSD(data.DWBalance),
+          balance: data.balance || "0",
+          Credit: data.Credit || "0",
+          Floating: data.Floating || "0",
+          Margin: data.Margin || "0",
+          MarginFree: data.MarginFree || "0",
+          Equity: data.Equity || "0",
+          DWBalance: data.DWBalance || "0",
         });
       } else {
         setSummary(null);

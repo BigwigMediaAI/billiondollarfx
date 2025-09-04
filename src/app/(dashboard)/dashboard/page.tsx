@@ -92,14 +92,8 @@ export default function DepositsPage() {
       if (result.data?.response === "success") {
         const accountData = result.data;
 
-        // ✅ Convert ₹ → $
-        const convertToUSD = (value: string) => {
-          const num = parseFloat(value) || 0;
-          return (num / 88.12).toFixed(2); // keep 2 decimals
-        };
-
-        setBalance(convertToUSD(accountData.balance));
-        setDWBalance(convertToUSD(accountData.DWBalance));
+        setBalance(accountData.balance);
+        setDWBalance(accountData.DWBalance);
       } else {
         console.warn(
           "Account summary fetch failed:",

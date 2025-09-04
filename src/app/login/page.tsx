@@ -279,13 +279,23 @@ export default function LoginPage() {
             />
 
             <label className="block">New Password</label>
-            <input
-              type="password"
-              className="w-full px-4 py-2 rounded bg-[#0f172a] border border-gray-700 text-white"
-              placeholder="New password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"} // 👈 toggle type
+                className="w-full px-4 py-2 rounded bg-[#0f172a] border border-gray-700 text-white pr-10"
+                placeholder="New password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              {/* 👁️ Toggle button */}
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
 
             {error && <div className="text-red-400 text-sm">{error}</div>}
 
