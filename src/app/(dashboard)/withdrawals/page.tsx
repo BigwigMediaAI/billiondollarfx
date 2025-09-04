@@ -123,6 +123,7 @@ function Withdrawal() {
         }
       );
 
+      console.log(res.data);
       if (res.data?.success) {
         alert("Withdrawal request submitted!");
         fetchAccountSummary(Number(form.accountno)); // refresh balance
