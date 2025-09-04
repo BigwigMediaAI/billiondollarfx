@@ -34,7 +34,6 @@ function Withdrawal() {
     note: "",
   });
   const [userData, setUserData] = useState<User | null>(null);
-  const [usdRate, setUsdRate] = useState<number | null>(null);
   const [showKycPopup, setShowKycPopup] = useState(false);
 
   // ✅ Fetch all accounts
@@ -139,21 +138,6 @@ function Withdrawal() {
     }
   };
 
-  useEffect(() => {
-    const fetchRate = async () => {
-      try {
-        const res = await axios.get(
-          "https://api.frankfurter.app/latest?amount=1&from=INR&to=USD"
-        );
-        setUsdRate(res.data.rates.USD);
-      } catch (err) {
-        console.error("Error fetching INR→USD rate:", err);
-      }
-    };
-
-    fetchRate();
-  }, []);
-
   return (
     <div className="flex flex-col gap-4">
       <div className="w-full rounded-md overflow-hidden shadow-md">
@@ -181,9 +165,7 @@ function Withdrawal() {
                 <div className="flex justify-between items-center">
                   <Wallet size={30} className="text-[var(--primary-color)]" />
                   <div className="flex flex-col">
-                    <h2>
-                      USD ({usdRate ? (balance * usdRate).toFixed(2) : balance})
-                    </h2>
+                    <h2>$({balance})</h2>
                     <h2 className="text-lg font-semibold">MT{acc.accountNo}</h2>
                   </div>
                 </div>
