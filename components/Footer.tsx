@@ -38,7 +38,7 @@ const footerLinks = [
   { label: "Deposit & Withdrawal Policy", path: "/Deposit&Withdrawal" },
   { label: "Restricted Countries", path: "/Restricted-Countries" },
   { label: "Risk Disclosure", path: "/risk-discloser" },
-  { label: "Client Services Agreement", path: "/client-services-agreement" },
+  // { label: "Client Services Agreement", path: "/client-services-agreement" },
 ];
 
 export default function Footer() {
