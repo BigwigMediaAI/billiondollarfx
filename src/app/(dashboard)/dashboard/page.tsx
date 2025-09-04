@@ -199,7 +199,7 @@ export default function DepositsPage() {
           <div className="space-y-5">
             <div className="bg-[#0d1b2a] p-4 rounded-xl flex justify-between items-center">
               <div className="text-gray-400 text-sm">Total Deposited</div>
-              <div className="text-white font-bold">${balance}</div>
+              <div className="text-white font-bold">₹{balance}</div>
             </div>
             <div className="flex justify-center">
               <Link href="/deposits">
