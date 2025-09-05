@@ -35,6 +35,7 @@ function Withdrawal() {
   });
   const [userData, setUserData] = useState<User | null>(null);
   const [showKycPopup, setShowKycPopup] = useState(false);
+  const [maxWithdrawInInr, setMaxWithdrawInInr] = useState<number>(0);
 
   // ✅ Fetch all accounts
   const fetchAccounts = async () => {
@@ -52,7 +53,15 @@ function Withdrawal() {
       );
 
       if (res.data) setUserData(res.data);
-      // console.log(res.data);
+      console.log(res.data);
+      setForm((prev) => ({
+        ...prev,
+        name: res.data.accountHolderName || "",
+        account: res.data.accountNumber || "",
+        ifsc: res.data.ifscCode || "",
+        mobile: res.data.phone || "",
+        note: "withdrawal request", // default note
+      }));
 
       if (res.data?.accounts?.length > 0) {
         setAccounts(res.data.accounts);
@@ -91,6 +100,32 @@ function Withdrawal() {
   useEffect(() => {
     fetchAccounts();
   }, []);
+
+  async function fetchRate() {
+    try {
+      const res = await axios.get(
+        "https://api.frankfurter.app/latest?amount=1&from=INR&to=USD"
+      );
+      return res.data.rates.USD; // 1 INR = ? USD
+    } catch (err: any) {
+      console.error("Error fetching INR→USD rate:", err.message);
+      return 0.012; // fallback rate if API fails
+    }
+  }
+
+  const updateMaxWithdrawInInr = async () => {
+    const inrToUsd = await fetchRate(); // 1 INR = ? USD
+    if (inrToUsd > 0) {
+      const usdToInr = 1 / inrToUsd; // ✅ invert
+      setMaxWithdrawInInr(balance * usdToInr);
+    }
+  };
+
+  useEffect(() => {
+    if (balance > 0) {
+      updateMaxWithdrawInInr();
+    }
+  }, [balance]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -217,15 +252,25 @@ function Withdrawal() {
                 {/* Account Number */}
                 <div>
                   <label className="block text-sm text-gray-300 mb-1">
-                    Trading Account No
+                    Select Account
                   </label>
-                  <input
-                    type="text"
+                  <select
                     name="accountNo"
                     value={form.accountNo}
-                    disabled
+                    onChange={handleChange}
+                    required
                     className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600"
-                  />
+                  >
+                    {accounts.length > 0 ? (
+                      accounts.map((acc) => (
+                        <option key={acc._id} value={acc.accountNo}>
+                          MT{acc.accountNo} ({acc.currency})
+                        </option>
+                      ))
+                    ) : (
+                      <option value="">No accounts available</option>
+                    )}
+                  </select>
                 </div>
 
                 {/* Bank Account */}
@@ -299,10 +344,13 @@ function Withdrawal() {
                     value={form.amount}
                     onChange={handleChange}
                     min="1000"
-                    max={balance}
+                    max={maxWithdrawInInr}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
                   />
+                  <p className="text-xs text-gray-400 mt-2">
+                    Minimum Withdrawal Amout: ₹1000
+                  </p>
                 </div>
 
                 {/* Note */}
