@@ -58,6 +58,12 @@ export default function AdminSidebar({ onClose }: { onClose?: () => void }) {
             icon={MessageSquare}
             pathname={pathname}
           />
+          <NavLink
+            href="/IB"
+            label="IB"
+            icon={MessageSquare}
+            pathname={pathname}
+          />
         </Section>
 
         <Section title="Account">
