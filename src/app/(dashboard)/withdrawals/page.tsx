@@ -100,7 +100,6 @@ function Withdrawal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const withdrawalAmount = Number(form.amount);
 
     // ✅ Prevent withdrawal if amount > balance
@@ -120,7 +119,7 @@ function Withdrawal() {
           name: form.name,
           mobile: form.mobile,
           note: form.note,
-          amount: withdrawalAmount,
+          amount: form.amount,
           accountNo: form.accountNo,
         }
       );
@@ -295,6 +294,8 @@ function Withdrawal() {
                     name="amount"
                     value={form.amount}
                     onChange={handleChange}
+                    min="1"
+                    max={balance}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
                   />
