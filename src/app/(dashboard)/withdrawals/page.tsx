@@ -52,11 +52,14 @@ function Withdrawal() {
       );
 
       if (res.data) setUserData(res.data);
+      console.log(res.data);
 
       if (res.data?.accounts?.length > 0) {
         setAccounts(res.data.accounts);
         const firstAccountNo = res.data.accounts[0].accountNo;
+        console.log("first:", firstAccountNo);
         setAccountNo(firstAccountNo);
+        console.log("accountno:", accountNo);
         fetchAccountSummary(firstAccountNo);
       }
     } catch (err) {
@@ -181,7 +184,7 @@ function Withdrawal() {
                     } else {
                       setForm((prev) => ({
                         ...prev,
-                        accountno: acc.accountNo.toString(),
+                        accountNo: acc.accountNo.toString(),
                       }));
                       setShowModal(true);
                     }
@@ -215,7 +218,7 @@ function Withdrawal() {
                   </label>
                   <input
                     type="text"
-                    name="accountno"
+                    name="accountNo"
                     value={form.accountNo}
                     disabled
                     className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600"
