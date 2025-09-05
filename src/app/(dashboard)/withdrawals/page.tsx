@@ -25,7 +25,7 @@ function Withdrawal() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
-    accountno: "",
+    accountNo: "",
     amount: "",
     account: "",
     ifsc: "",
@@ -118,14 +118,14 @@ function Withdrawal() {
           mobile: form.mobile,
           note: form.note,
           amount: withdrawalAmount,
-          accountNo: form.accountno,
+          accountNo: form.accountNo,
         }
       );
 
       console.log(res.data);
       if (res.data?.success) {
         alert("Withdrawal request submitted!");
-        fetchAccountSummary(Number(form.accountno)); // refresh balance
+        fetchAccountSummary(Number(form.accountNo)); // refresh balance
       } else {
         alert("Withdrawal failed. Try again.");
       }
@@ -216,7 +216,7 @@ function Withdrawal() {
                   <input
                     type="text"
                     name="accountno"
-                    value={form.accountno}
+                    value={form.accountNo}
                     disabled
                     className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600"
                   />
