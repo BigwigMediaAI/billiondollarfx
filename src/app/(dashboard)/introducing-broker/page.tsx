@@ -24,6 +24,7 @@ function IntroducingBroker() {
       );
       setUser(res.data);
       //   console.log(res.data);
+      console.log(res.data.isApprovedIB);
     } catch (err) {
       console.error("Error fetching user:", err);
     } finally {
@@ -39,7 +40,7 @@ function IntroducingBroker() {
 
   return (
     <div>
-      {!user.isApproveIB ? (
+      {!user.isApprovedIB ? (
         <IBRequest user={user} refreshUser={fetchUser} />
       ) : (
         <IBPage user={user} />

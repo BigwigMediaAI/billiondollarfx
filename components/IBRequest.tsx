@@ -43,7 +43,12 @@ function IBRequest({ user, refreshUser, setUser }: any) {
 
       // refresh user from backend
       refreshUser?.();
-    } catch (err) {
+    } catch (err: any) {
+      if (err.response?.status === 400 && err.response?.data?.message) {
+        alert(`⚠️ ${err.response.data.message}`); // Shows "IB request already submitted"
+      } else {
+        alert("❌ Something went wrong while submitting IB request");
+      }
       console.error("❌ Error submitting IB request:", err);
     }
   };
