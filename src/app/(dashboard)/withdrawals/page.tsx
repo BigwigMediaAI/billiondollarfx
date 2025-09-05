@@ -298,7 +298,7 @@ function Withdrawal() {
                     name="amount"
                     value={form.amount}
                     onChange={handleChange}
-                    min="1"
+                    min="1000"
                     max={balance}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
