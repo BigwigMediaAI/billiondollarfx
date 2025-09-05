@@ -52,14 +52,14 @@ function Withdrawal() {
       );
 
       if (res.data) setUserData(res.data);
-      console.log(res.data);
+      // console.log(res.data);
 
       if (res.data?.accounts?.length > 0) {
         setAccounts(res.data.accounts);
         const firstAccountNo = res.data.accounts[0].accountNo;
-        console.log("first:", firstAccountNo);
+        // console.log("first:", firstAccountNo);
         setAccountNo(firstAccountNo);
-        console.log("accountno:", accountNo);
+        // console.log("accountno:", accountNo);
         fetchAccountSummary(firstAccountNo);
       }
     } catch (err) {
@@ -108,11 +108,15 @@ function Withdrawal() {
       return;
     }
 
+    // Object.entries(form).forEach(([key, value]) => {
+    //   console.log(`${key}:`, value, "| type:", typeof value);
+    // });
+
     try {
       setLoading(true);
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/payment/ramee/withdrawal`,
+        `https://billiondollarfx-backend.onrender.com/api/payment/ramee/withdrawal`,
         {
           account: form.account,
           ifsc: form.ifsc,
