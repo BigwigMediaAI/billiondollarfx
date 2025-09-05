@@ -256,15 +256,17 @@ export default function LiveAccounts() {
                     Deposit
                   </button>
                 </Link>
-                <button
-                  className="bg-red-600 px-4 py-2 rounded-md text-sm cursor-pointer"
-                  onClick={() => {
-                    setBalanceMode("withdraw");
-                    setShowAddBalanceModal(true);
-                  }}
-                >
-                  Withdraw
-                </button>
+                <Link href="/withdrawals">
+                  <button
+                    className="bg-red-600 px-4 py-2 rounded-md text-sm cursor-pointer"
+                    // onClick={() => {
+                    //   setBalanceMode("withdraw");
+                    //   setShowAddBalanceModal(true);
+                    // }}
+                  >
+                    Withdraw
+                  </button>
+                </Link>
                 <button
                   className="bg-gray-600 px-4 py-2 rounded-md text-sm cursor-pointer"
                   onClick={() => setShowPasswordModal(true)}
