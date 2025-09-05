@@ -199,7 +199,7 @@ export default function Sidebar({
             pathname={pathname}
           /> */}
           <NavLink
-            href="/ib"
+            href="/introducing-broker"
             label="Introducing Broker"
             icon={User}
             pathname={pathname}
