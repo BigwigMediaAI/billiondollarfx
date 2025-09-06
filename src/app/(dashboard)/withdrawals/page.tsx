@@ -4,6 +4,7 @@ import axios from "axios";
 import { Wallet, X } from "lucide-react";
 import Button from "../../../../components/Button";
 import KycAlertModal from "../../../../components/KycAlertModal";
+import toast from "react-hot-toast";
 
 interface Account {
   _id: string;
@@ -142,8 +143,17 @@ function Withdrawal() {
     const withdrawalAmount = Number(form.amount);
 
     // ✅ Prevent withdrawal if amount > balance
-    if (withdrawalAmount > balance) {
-      alert("You cannot withdraw more than your available balance.");
+    if (withdrawalAmount > maxWithdrawInInr) {
+      toast.error("Insufficient balance. Please check your account.");
+      return;
+    }
+    if (withdrawalAmount < 1000) {
+      toast.error("Minimum withdrawal amount is ₹1000");
+      return;
+    }
+
+    if (withdrawalAmount > 100000) {
+      toast.error("You can withdraw a maximum of ₹100,000 at once.");
       return;
     }
 
@@ -169,14 +179,14 @@ function Withdrawal() {
 
       console.log(res.data);
       if (res.data?.success) {
-        alert("Withdrawal request submitted!");
+        toast.success("Withdrawal request submitted!");
         fetchAccountSummary(Number(form.accountNo)); // refresh balance
       } else {
-        alert("Withdrawal failed. Try again.");
+        toast.error("Withdrawal failed. Try again.");
       }
     } catch (err) {
       console.error(err);
-      alert("Withdrawal failed. Try again.");
+      toast.error("Withdrawal failed. Try again.");
     } finally {
       setLoading(false);
       setShowModal(false);
@@ -347,14 +357,19 @@ function Withdrawal() {
                     name="amount"
                     value={form.amount}
                     onChange={handleChange}
-                    min="1000"
-                    max={Math.min(maxWithdrawInInr, 100000)}
+                    // min="1000"
+                    // max={Math.min(maxWithdrawInInr, 100000)}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
                   />
-                  <p className="text-xs text-gray-400 mt-2">
-                    Minimum Withdrawal Amout: ₹1000
-                  </p>
+                  <div className="flex justify-between">
+                    <p className="text-xs text-gray-400 mt-2">
+                      Min Amout: ₹1000
+                    </p>
+                    <p className="text-xs text-gray-400 mt-2">
+                      Max Amout: ₹100000
+                    </p>
+                  </div>
                 </div>
 
                 {/* Note */}

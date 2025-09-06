@@ -4,6 +4,7 @@ import axios from "axios";
 import { CreditCard, X } from "lucide-react";
 import Button from "../../../../components/Button"; // ✅ import your Button
 import KycAlertModal from "../../../../components/KycAlertModal";
+import toast from "react-hot-toast";
 
 interface Account {
   _id: string;
@@ -93,11 +94,11 @@ function Deposit() {
       if (res.data?.decrypted?.url) {
         window.location.href = res.data.decrypted.url;
       } else {
-        alert("Deposit request sent!");
+        toast.success("Deposit request sent!");
       }
     } catch (err) {
       console.error(err);
-      alert("Deposit failed. Try again.");
+      toast.error("Deposit failed. Try again.");
     } finally {
       setLoading(false);
       setShowModal(false);

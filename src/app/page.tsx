@@ -121,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-      <NewsInsights />
+      {/* <NewsInsights /> */}
       <PaymentMethods />
       <section className="w-11/12 md:w-4/5 mx-auto py-12 space-y-5">
         <h2 className="text-center max-w-3xl mx-auto text-gray-200 text-xl md:text-2xl font-bold">
