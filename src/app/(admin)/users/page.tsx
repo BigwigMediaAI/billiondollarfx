@@ -5,6 +5,7 @@ import axios from "axios";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { useRouter } from "next/navigation";
+import Button from "../../../../components/Button";
 
 interface User {
   _id: string;
@@ -157,7 +158,13 @@ export default function UsersPage() {
       {/* ✅ User Details Modal */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-[#1f2937] rounded-lg p-6 w-11/12 md:w-2/3 max-h-[90vh] overflow-y-auto">
+          <div className="bg-[#1f2937] rounded-lg p-6 w-11/12 md:w-2/3 max-h-[90vh] overflow-y-auto relative">
+            <button
+              onClick={() => setSelectedUser(null)}
+              className="absolute top-3 right-5 text-gray-400 hover:text-white"
+            >
+              ✕
+            </button>
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
               {selectedUser.profileImage && (
                 <img
@@ -292,20 +299,19 @@ export default function UsersPage() {
 
             {/* Actions */}
             <div className="flex justify-end gap-3 mt-6">
-              <button
+              {/* <button
                 onClick={() => setSelectedUser(null)}
                 className="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded"
               >
                 Close
-              </button>
+              </button> */}
               {!selectedUser.isKycVerified && (
-                <button
+                <Button
                   onClick={() => handleVerifyKyc(selectedUser.email)}
                   disabled={verifying}
-                  className="px-4 py-2 bg-[var(--primary)] hover:bg-[#f3d089] rounded"
-                >
-                  {verifying ? "Verifying..." : "Verify KYC"}
-                </button>
+                  className="bg-[var(--primary)] hover:bg-[#f3d089] text-black"
+                  text={verifying ? "Verifying..." : "Verify KYC"}
+                />
               )}
             </div>
           </div>
