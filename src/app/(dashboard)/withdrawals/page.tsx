@@ -107,8 +107,12 @@ function Withdrawal() {
         "https://api.frankfurter.app/latest?amount=1&from=INR&to=USD"
       );
       return res.data.rates.USD; // 1 INR = ? USD
-    } catch (err: any) {
-      console.error("Error fetching INR→USD rate:", err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Error fetching INR→USD rate:", err.message);
+      } else {
+        console.error("Unknown error fetching INR→USD rate:", err);
+      }
       return 0.012; // fallback rate if API fails
     }
   }

@@ -1,23 +1,42 @@
 "use client";
 import { useState } from "react";
 import Button from "./Button";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-function IBRequest({ user, refreshUser, setUser }: any) {
+interface IBRequestProps {
+  user: {
+    email: string;
+    ibRequestPending?: boolean;
+  };
+  refreshUser?: () => void;
+  setUser?: (user: IBRequestProps["user"]) => void;
+}
+
+interface FormData {
+  existingClientBase: string;
+  offerEducation: string;
+  expectedClientsNext3Months: string;
+  expectedCommissionDirect: string;
+  expectedCommissionSubIB: string;
+  yourShare: string;
+  clientShare: string;
+}
+
+function IBRequest({ user, refreshUser, setUser }: IBRequestProps) {
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     existingClientBase: "",
     offerEducation: "",
     expectedClientsNext3Months: "",
     expectedCommissionDirect: "",
-    expectedCommissionSubIB: "0", // ✅ always string
-    yourShare: "0", // ✅ keep as string
-    clientShare: "0", // ✅ keep as string
+    expectedCommissionSubIB: "0",
+    yourShare: "0",
+    clientShare: "0",
   });
 
   // Update form values
-  const handleChange = (field: string, value: string) => {
-    let updated = { ...formData, [field]: value };
+  const handleChange = (field: keyof FormData, value: string) => {
+    const updated: FormData = { ...formData, [field]: value };
 
     if (field === "expectedCommissionDirect") {
       const commissionValue = parseInt(value, 10) || 0;
@@ -32,7 +51,7 @@ function IBRequest({ user, refreshUser, setUser }: any) {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/api/ib/register`, {
         ...formData,
-        email: user.email, // ✅ pass email
+        email: user.email,
       });
 
       alert("✅ IB Request Submitted!");
@@ -43,9 +62,13 @@ function IBRequest({ user, refreshUser, setUser }: any) {
 
       // refresh user from backend
       refreshUser?.();
-    } catch (err: any) {
-      if (err.response?.status === 400 && err.response?.data?.message) {
-        alert(`⚠️ ${err.response.data.message}`); // Shows "IB request already submitted"
+    } catch (err) {
+      const axiosErr = err as AxiosError<{ message?: string }>;
+      if (
+        axiosErr.response?.status === 400 &&
+        axiosErr.response?.data?.message
+      ) {
+        alert(`⚠️ ${axiosErr.response.data.message}`);
       } else {
         alert("❌ Something went wrong while submitting IB request");
       }
@@ -62,8 +85,8 @@ function IBRequest({ user, refreshUser, setUser }: any) {
         <p className="text-gray-400 mb-6 leading-relaxed">
           Join our Introducing Broker (IB) program and unlock the potential to
           grow your business and increase your revenue. As a valued partner,
-          you'll gain access to our world-class trading technology, dedicated
-          support, and competitive compensation structures.
+          you&#39;ll gain access to our world-class trading technology,
+          dedicated support, and competitive compensation structures.
         </p>
 
         {/* Benefits */}

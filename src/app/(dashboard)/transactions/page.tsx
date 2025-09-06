@@ -15,6 +15,22 @@ interface Account {
   currency: string;
 }
 
+interface DepositResponse {
+  _id: string;
+  createdAt: string;
+  amount: string | number;
+  accountNo: string | number;
+  status: "SUCCESS" | "FAILED" | "PENDING" | string;
+}
+
+interface WithdrawalResponse {
+  _id: string;
+  createdAt: string;
+  amount: string | number;
+  accountNo: string | number;
+  status: boolean; // true = completed, false = pending
+}
+
 const PAGE_SIZE_OPTIONS = [10, 25, 50, 100];
 
 export default function TransactionPage() {
@@ -46,7 +62,7 @@ export default function TransactionPage() {
 
   // ---------- helpers ----------
   const formatRow = (
-    row: any,
+    row: DepositResponse | WithdrawalResponse,
     type: "deposit" | "withdrawal"
   ): Transaction => ({
     date: new Date(row.createdAt).toLocaleString(),
@@ -59,7 +75,7 @@ export default function TransactionPage() {
           : row.status === "FAILED"
           ? "Failed"
           : "Pending"
-        : row.status
+        : (row as WithdrawalResponse).status
         ? "Completed"
         : "Pending",
   });
@@ -121,13 +137,13 @@ export default function TransactionPage() {
       ) {
         setDepositAll(null); // server paging mode
         setDepositPageData(
-          res.data.deposits.map((d: any) => formatRow(d, "deposit"))
+          res.data.deposits.map((d: DepositResponse) => formatRow(d, "deposit"))
         );
         setDepositTotal(res.data.total);
       } else {
         // fallback: API returned all rows
         const allRows: Transaction[] = (res.data?.deposits || []).map(
-          (d: any) => formatRow(d, "deposit")
+          (d: DepositResponse) => formatRow(d, "deposit")
         );
         setDepositAll(allRows);
         setDepositTotal(allRows.length);
@@ -159,12 +175,14 @@ export default function TransactionPage() {
       ) {
         setWithdrawAll(null); // server paging mode
         setWithdrawPageData(
-          res.data.withdrawals.map((w: any) => formatRow(w, "withdrawal"))
+          res.data.withdrawals.map((w: WithdrawalResponse) =>
+            formatRow(w, "withdrawal")
+          )
         );
         setWithdrawTotal(res.data.total);
       } else {
         const allRows: Transaction[] = (res.data?.withdrawals || []).map(
-          (w: any) => formatRow(w, "withdrawal")
+          (w: WithdrawalResponse) => formatRow(w, "withdrawal")
         );
         setWithdrawAll(allRows);
         setWithdrawTotal(allRows.length);
@@ -248,7 +266,7 @@ export default function TransactionPage() {
     const buttons: (number | string)[] = [];
     const middleCount = maxButtons - 2; // reserve for first & last
     let start = Math.max(2, current - Math.floor(middleCount / 2));
-    let end = Math.min(total - 1, start + middleCount - 1);
+    const end = Math.min(total - 1, start + middleCount - 1);
 
     // shift window if at the end
     if (end - start + 1 < middleCount) {
