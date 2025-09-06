@@ -11,6 +11,7 @@ interface Broker {
   email: string;
   phone: string;
   message: string;
+  marked?: boolean; // ✅ new field
 }
 
 export default function UsersPage() {
@@ -27,17 +28,38 @@ export default function UsersPage() {
       return;
     }
 
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/brokers`)
-      .then((res) => {
-        setBrokers(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch brokers:", err);
-      })
-      .finally(() => setLoading(false));
+    fetchBrokers();
   }, []);
+
+  const fetchBrokers = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/brokers`
+      );
+      setBrokers(res.data);
+    } catch (err) {
+      console.error("Failed to fetch brokers:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Toggle marked status
+  const handleToggleMarked = async (id: string) => {
+    try {
+      const res = await axios.patch(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/brokers/${id}/mark`
+      );
+
+      setBrokers((prev) =>
+        prev.map((broker) =>
+          broker._id === id ? { ...broker, marked: res.data.marked } : broker
+        )
+      );
+    } catch (err) {
+      console.error("Failed to update broker:", err);
+    }
+  };
 
   return (
     <div className="min-h-screen text-white">
@@ -60,12 +82,13 @@ export default function UsersPage() {
                 <th className="px-4 py-3">Email</th>
                 <th className="px-4 py-3">Phone</th>
                 <th className="px-4 py-3">Message</th>
+                <th className="px-4 py-3">Marked</th>
               </tr>
             </thead>
             <tbody>
               {brokers.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="text-center py-6 text-gray-400">
+                  <td colSpan={5} className="text-center py-6 text-gray-400">
                     No broker applications found.
                   </td>
                 </tr>
@@ -81,6 +104,14 @@ export default function UsersPage() {
                     <td className="px-4 py-3">{broker.email}</td>
                     <td className="px-4 py-3">{broker.phone}</td>
                     <td className="px-4 py-3">{broker.message || "N/A"}</td>
+                    <td className="px-4 py-3">
+                      <input
+                        type="checkbox"
+                        checked={broker.marked || false}
+                        onChange={() => handleToggleMarked(broker._id)}
+                        className="w-5 h-5 cursor-pointer accent-[var(--primary)]"
+                      />
+                    </td>
                   </tr>
                 ))
               )}
