@@ -1,11 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-function IBPage({ user }: any) {
+interface User {
+  email: string;
+  fullName?: string;
+  referralCode?: string;
+  isApprovedIB?: boolean;
+}
+
+interface IBPageProps {
+  user: User;
+}
+
+function IBPage({ user }: IBPageProps) {
   const [referralCode, setReferralCode] = useState<string | null>(null);
-  const [connections, setConnections] = useState<any[]>([]);
+  const [connections, setConnections] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
 
@@ -13,25 +24,27 @@ function IBPage({ user }: any) {
     const fetchReferralAndConnections = async () => {
       try {
         // 1. Fetch IB referral code
-        const ibRes = await axios.get(
+        const ibRes = await axios.get<{ referralCode: string }>(
           `${process.env.NEXT_PUBLIC_API_BASE}/api/ib/${user.email}`
         );
         const code = ibRes.data.referralCode;
         setReferralCode(code);
 
         // 2. Fetch all users
-        const usersRes = await axios.get(
+        const usersRes = await axios.get<User[]>(
           `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/users`
         );
         const allUsers = usersRes.data;
 
         // 3. Filter connections by referral code
-        const matchedUsers = allUsers.filter(
-          (u: any) => u.referralCode === code
-        );
+        const matchedUsers = allUsers.filter((u) => u.referralCode === code);
         setConnections(matchedUsers);
-      } catch (err: any) {
-        console.error("❌ Error fetching IB data:", err.response?.data || err);
+      } catch (err: unknown) {
+        const axiosErr = err as AxiosError;
+        console.error(
+          "❌ Error fetching IB data:",
+          axiosErr.response?.data || axiosErr.message
+        );
       } finally {
         setLoading(false);
       }
@@ -99,7 +112,7 @@ function IBPage({ user }: any) {
                 </tr>
               </thead>
               <tbody>
-                {connections.map((c: any, idx: number) => (
+                {connections.map((c, idx) => (
                   <tr
                     key={idx}
                     className="hover:bg-[#1b2744] transition rounded-lg"
