@@ -4,7 +4,7 @@ import axios from "axios";
 import { Wallet, X } from "lucide-react";
 import Button from "../../../../components/Button";
 import KycAlertModal from "../../../../components/KycAlertModal";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Account {
   _id: string;
@@ -142,11 +142,12 @@ function Withdrawal() {
     e.preventDefault();
     const withdrawalAmount = Number(form.amount);
 
-    // ✅ Prevent withdrawal if amount > balance
-    if (withdrawalAmount > maxWithdrawInInr) {
-      toast.error("Insufficient balance. Please check your account.");
+    // 🚨 Validation
+    if (isNaN(withdrawalAmount) || withdrawalAmount <= 0) {
+      toast.error("Please enter a valid amount.");
       return;
     }
+
     if (withdrawalAmount < 1000) {
       toast.error("Minimum withdrawal amount is ₹1000");
       return;
@@ -154,6 +155,11 @@ function Withdrawal() {
 
     if (withdrawalAmount > 100000) {
       toast.error("You can withdraw a maximum of ₹100,000 at once.");
+      return;
+    }
+
+    if (withdrawalAmount > maxWithdrawInInr) {
+      toast.error("Insufficient balance. Please check your account.");
       return;
     }
 
@@ -262,7 +268,7 @@ function Withdrawal() {
               </button>
 
               <h2 className="text-xl font-bold mb-4">Withdraw Funds</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 {/* Account Number */}
                 <div>
                   <label className="block text-sm text-gray-300 mb-1">
@@ -359,7 +365,7 @@ function Withdrawal() {
                     onChange={handleChange}
                     // min="1000"
                     // max={Math.min(maxWithdrawInInr, 100000)}
-                    required
+                    // required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
                   />
                   <div className="flex justify-between">
@@ -395,6 +401,16 @@ function Withdrawal() {
           </div>
         )}
       </div>
+
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
 
       <KycAlertModal
         isOpen={showKycPopup}

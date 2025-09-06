@@ -4,7 +4,7 @@ import axios from "axios";
 import { CreditCard, X } from "lucide-react";
 import Button from "../../../../components/Button"; // ✅ import your Button
 import KycAlertModal from "../../../../components/KycAlertModal";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Account {
   _id: string;
@@ -220,6 +220,15 @@ function Deposit() {
           </div>
         )}
       </div>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
       <KycAlertModal
         isOpen={showKycPopup}
         onClose={() => setShowKycPopup(false)}
