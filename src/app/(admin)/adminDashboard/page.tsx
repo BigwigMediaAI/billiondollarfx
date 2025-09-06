@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
 
     // 🔐 Redirect to login if no token
     if (!token || token !== "admin-token") {

@@ -40,7 +40,7 @@ export default function IBRequestsPage() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     if (!token || token !== "admin-token") {
       router.push("/login");
       return;

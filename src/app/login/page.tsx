@@ -40,9 +40,9 @@ export default function LoginPage() {
     }
 
     if (email === "admin@gmail.com" && password === "admin@2025") {
-      localStorage.setItem("token", "admin-token"); // fake token
+      localStorage.setItem("adminToken", "admin-token"); // fake token
       localStorage.setItem(
-        "user",
+        "admin",
         JSON.stringify({ email: "admin@gmail.com", role: "admin" })
       );
       router.push("/adminDashboard");

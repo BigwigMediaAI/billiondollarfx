@@ -38,7 +38,7 @@ export default function AdminTicketsPage() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
 
     // 🔐 Redirect to login if no token
     if (!token || token !== "admin-token") {
