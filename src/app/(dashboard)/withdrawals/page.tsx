@@ -348,7 +348,7 @@ function Withdrawal() {
                     value={form.amount}
                     onChange={handleChange}
                     min="1000"
-                    max={maxWithdrawInInr}
+                    max={Math.min(maxWithdrawInInr, 100000)}
                     required
                     className="w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600"
                   />
