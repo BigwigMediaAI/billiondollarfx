@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface Broker {
   _id: string;
@@ -13,10 +14,19 @@ interface Broker {
 }
 
 export default function UsersPage() {
+  const router = useRouter();
   const [brokers, setBrokers] = useState<Broker[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // 🔐 Redirect to login if no token
+    if (!token || token !== "admin-token") {
+      router.push("/login");
+      return;
+    }
+
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/brokers`)
       .then((res) => {

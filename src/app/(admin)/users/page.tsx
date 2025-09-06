@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { useRouter } from "next/navigation";
 
 interface User {
   _id: string;
@@ -35,6 +36,7 @@ interface User {
 }
 
 export default function UsersPage() {
+  const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -44,6 +46,14 @@ export default function UsersPage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // 🔐 Redirect to login if no token
+    if (!token || token !== "admin-token") {
+      router.push("/login");
+      return;
+    }
+
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/users`)
       .then((res) => {

@@ -3,13 +3,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Users } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [totalUsers, setTotalUsers] = useState<number | null>(null);
   const [totalBrokers, setTotalBrokers] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // 🔐 Redirect to login if no token
+    if (!token || token !== "admin-token") {
+      router.push("/login");
+      return;
+    }
+
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/users`)
       .then((res) => {

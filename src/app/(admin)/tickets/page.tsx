@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface User {
   fullName: string;
@@ -24,6 +25,7 @@ interface Ticket {
 }
 
 export default function AdminTicketsPage() {
+  const router = useRouter();
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [activeTicket, setActiveTicket] = useState<Ticket | null>(null);
@@ -36,6 +38,13 @@ export default function AdminTicketsPage() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // 🔐 Redirect to login if no token
+    if (!token || token !== "admin-token") {
+      router.push("/login");
+      return;
+    }
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 

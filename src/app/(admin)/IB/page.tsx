@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IBRequest {
@@ -17,6 +18,7 @@ interface IBRequest {
 }
 
 export default function IBRequestsPage() {
+  const router = useRouter();
   const [requests, setRequests] = useState<IBRequest[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +36,14 @@ export default function IBRequestsPage() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // 🔐 Redirect to login if no token
+    if (!token || token !== "admin-token") {
+      router.push("/login");
+      return;
+    }
+
     fetchRequests();
   }, []);
 
