@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   ChevronDown,
@@ -45,9 +45,19 @@ export default function Sidebar({
     market: false,
     settings: false,
   });
+  const router = useRouter();
 
   const toggle = (section: keyof typeof open) =>
     setOpen((prev) => ({ ...prev, [section]: !prev[section] }));
+
+  const handleSignOut = () => {
+    // Remove localStorage items
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    // Redirect to login page
+    router.push("/login");
+  };
 
   return (
     <div
@@ -223,13 +233,13 @@ export default function Sidebar({
             pathname={pathname}
             onClose={onClose}
           />
-          <NavLink
-            href="/signout"
-            label="Signout"
-            icon={LogOut}
-            pathname={pathname}
-            onClose={onClose}
-          />
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-3 px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1e293b] text-white/80 w-full cursor-pointer"
+          >
+            <LogOut size={18} />
+            Sign Out
+          </button>
         </Section>
       </div>
     </div>

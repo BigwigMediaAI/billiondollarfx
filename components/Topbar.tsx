@@ -9,6 +9,7 @@ import {
   Minimize,
   Menu,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Topbar({
@@ -19,6 +20,7 @@ export default function Topbar({
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [userName, setUserName] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const handleChange = () => setIsFullscreen(!!document.fullscreenElement);
@@ -49,8 +51,12 @@ export default function Topbar({
   };
 
   const handleSignOut = () => {
-    localStorage.clear();
-    window.location.href = "/";
+    // Remove localStorage items
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    // Redirect to login page
+    router.push("/login");
   };
 
   return (
