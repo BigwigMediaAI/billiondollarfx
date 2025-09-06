@@ -99,8 +99,8 @@ export default function IBRequestsPage() {
                 <th className="px-4 py-3">Existing Clients</th>
                 <th className="px-4 py-3">Offer Education</th>
                 <th className="px-4 py-3">Expected Clients</th>
-                <th className="px-4 py-3">Direct Commission</th>
-                <th className="px-4 py-3">Sub IB Commission</th>
+                {/* <th className="px-4 py-3">Direct Commission</th>
+                <th className="px-4 py-3">Sub IB Commission</th> */}
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3">Referral Code</th>
                 <th className="px-4 py-3">Action</th>
@@ -116,8 +116,8 @@ export default function IBRequestsPage() {
                   <td className="px-4 py-3">{ib.existingClientBase}</td>
                   <td className="px-4 py-3">{ib.offerEducation}</td>
                   <td className="px-4 py-3">{ib.expectedClientsNext3Months}</td>
-                  <td className="px-4 py-3">{ib.expectedCommissionDirect}</td>
-                  <td className="px-4 py-3">{ib.expectedCommissionSubIB}</td>
+                  {/* <td className="px-4 py-3">{ib.expectedCommissionDirect}</td>
+                  <td className="px-4 py-3">{ib.expectedCommissionSubIB}</td> */}
 
                   <td
                     className={`px-4 py-3 font-semibold ${
@@ -132,12 +132,10 @@ export default function IBRequestsPage() {
                   </td>
                   <td className="px-4 py-3">{ib.referralCode || "—"}</td>
                   <td className="px-4 py-3">
-                    <button
+                    <Button
                       onClick={() => setSelectedRequest(ib)}
-                      className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm"
-                    >
-                      View
-                    </button>
+                      text="View"
+                    />
                   </td>
                 </tr>
               ))}

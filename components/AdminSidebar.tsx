@@ -1,14 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Users, LogOut, X, MessageSquare } from "lucide-react";
 import clsx from "clsx";
 import Image from "next/image";
 import logo from "../assets/bdfx.gif";
 
 export default function AdminSidebar({ onClose }: { onClose?: () => void }) {
+  const router = useRouter();
   const pathname = usePathname();
+
+  const handleSignOut = () => {
+    // Remove localStorage items
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    // Redirect to login page
+    router.push("/login");
+  };
 
   return (
     <aside className="h-full w-64 bg-[#0b121a] text-white flex flex-col border-r border-gray-700">
@@ -67,12 +77,13 @@ export default function AdminSidebar({ onClose }: { onClose?: () => void }) {
         </Section>
 
         <Section title="Account">
-          <NavLink
-            href="/"
-            label="Sign Out"
-            icon={LogOut}
-            pathname={pathname}
-          />
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-3 px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1e293b] text-white/80 w-full cursor-pointer"
+          >
+            <LogOut size={18} />
+            Sign Out
+          </button>
         </Section>
       </div>
     </aside>

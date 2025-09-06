@@ -140,12 +140,10 @@ export default function UsersPage() {
                       )}
                     </td>
                     <td className="px-4 py-3">
-                      <button
+                      <Button
                         onClick={() => setSelectedUser(user)}
-                        className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm"
-                      >
-                        View
-                      </button>
+                        text="View"
+                      />
                     </td>
                   </tr>
                 ))
@@ -158,7 +156,7 @@ export default function UsersPage() {
       {/* ✅ User Details Modal */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-[#1f2937] rounded-lg p-6 w-11/12 md:w-2/3 max-h-[90vh] overflow-y-auto relative">
+          <div className="bg-[#1f2937] rounded-lg p-6 w-11/12 md:w-2/3 max-h-[90vh] overflow-y-auto no-scrollbar relative">
             <button
               onClick={() => setSelectedUser(null)}
               className="absolute top-3 right-5 text-gray-400 hover:text-white"
