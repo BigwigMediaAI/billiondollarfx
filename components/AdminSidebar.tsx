@@ -13,8 +13,8 @@ export default function AdminSidebar({ onClose }: { onClose?: () => void }) {
 
   const handleSignOut = () => {
     // Remove localStorage items
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("admin");
 
     // Redirect to login page
     router.push("/login");
