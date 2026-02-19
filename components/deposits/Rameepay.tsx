@@ -41,7 +41,7 @@ function RameePay() {
       const email = user.email;
 
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`,
       );
       if (res.data) setUserData(res.data);
 
@@ -63,7 +63,7 @@ function RameePay() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -73,9 +73,9 @@ function RameePay() {
 
     const amount = Number(form.amount);
 
-    // ✅ Validate minimum 880
-    if (amount < 880) {
-      alert("The minimum deposit amount should be ₹880.");
+    // ✅ Validate minimum 1000
+    if (amount < 1000) {
+      alert("The minimum deposit amount should be ₹1000.");
       return;
     }
 
@@ -87,7 +87,7 @@ function RameePay() {
         {
           accountNo: form.accountNo,
           amount,
-        }
+        },
       );
       console.log(res.data);
 
@@ -185,14 +185,14 @@ function RameePay() {
                     value={form.amount}
                     onChange={handleChange}
                     required
-                    min={880} // ✅ minimum value enforced
-                    placeholder="880"
+                    min={1000} // ✅ minimum value enforced
+                    placeholder="1000"
                     className="w-full pl-7 pr-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
                   />
                 </div>
                 {/* Note under input */}
                 <p className="text-xs text-gray-400 mt-1">
-                  Minimum deposit amount is ₹880.
+                  Minimum deposit amount is ₹1000.
                 </p>
               </div>
 

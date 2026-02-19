@@ -41,7 +41,7 @@ function Digipay() {
       const email = user.email;
 
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/user/${email}`,
       );
       if (res.data) setUserData(res.data);
 
@@ -63,7 +63,7 @@ function Digipay() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -73,9 +73,9 @@ function Digipay() {
 
     const amount = Number(form.amount);
 
-    // ✅ Validate minimum 880
-    if (amount < 880) {
-      alert("The minimum deposit amount should be ₹880.");
+    // ✅ Validate minimum 1000
+    if (amount < 1000) {
+      alert("The minimum deposit amount should be ₹1000.");
       return;
     }
 
@@ -87,7 +87,7 @@ function Digipay() {
         {
           merchant_user_id: form.accountNo,
           amount,
-        }
+        },
       );
       // console.log(res.data);
 
