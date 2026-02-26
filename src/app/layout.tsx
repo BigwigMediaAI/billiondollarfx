@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import AOSWrapper from "../../components/AOSWrapper"; // adjust path if needed
+import AOSWrapper from "../../components/AOSWrapper";
 import Script from "next/script";
 
 const montserrat = Montserrat({
@@ -29,6 +29,7 @@ export default function RootLayout({
           content="8lTSuR5UYvf6hPgYpADzJxRnZCQ2eWRFJpSJ4KAcNC4"
         />
         <link rel="icon" href="/favicon.ico" />
+
         <style>{`
           body > .skiptranslate {
             display: none;
@@ -45,22 +46,29 @@ export default function RootLayout({
             }
           }
         `}</style>
-        {/* Meta Pixel Code  */}
-        <script>
-          {`
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2525742971143286');
-    fbq('track', 'PageView');
-  `}
-        </script>
 
+        {/* Meta Pixel Code */}
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '2525742971143286');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        {/* End Meta Pixel Code */}
+      </head>
+
+      <body className={montserrat.className}>
+        <AOSWrapper>{children}</AOSWrapper>
+
+        {/* Meta Pixel Noscript */}
         <noscript>
           <img
             height="1"
@@ -69,10 +77,21 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=2525742971143286&ev=PageView&noscript=1"
           />
         </noscript>
-        {/* End Meta Pixel Code --> */}
-      </head>
-      <body className={montserrat.className}>
-        <AOSWrapper>{children}</AOSWrapper>
+
+        {/* Zoho SalesIQ Script */}
+        <Script id="zoho-init" strategy="afterInteractive">
+          {`
+            window.$zoho=window.$zoho || {};
+            $zoho.salesiq=$zoho.salesiq||{ready:function(){}};
+          `}
+        </Script>
+
+        <Script
+          id="zsiqscript"
+          src="https://salesiq.zohopublic.com/widget?wc=siq386b399ecc65c2474fa386c88a997404"
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   );
